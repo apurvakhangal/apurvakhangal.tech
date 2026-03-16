@@ -1,21 +1,21 @@
 # Apurva Khangal – Portfolio
 
-Hi! 👋
+Hi!
 
 This is the source code for my personal portfolio website. I built it as a space to showcase the projects I've worked on, the technologies I enjoy using, and the kind of problems I like solving.
 
-The goal was to create something that feels **clean, interactive, and a little different** — with smooth animations, thoughtful design, and a layout that reflects both my technical and creative interests. It's also a place where I experiment with modern web technologies and interaction patterns.
+The goal was to create something that feels **clean, interactive, and a little different** with smooth animations, thoughtful design, and a layout that reflects both my technical and creative interests. It's also a place where I experiment with modern web technologies and interaction patterns.
 
 ---
 
-## 🌐 Live Website
+## Live Website ;)
 
 Check out the portfolio here:
 **[apurvakhangal.tech](https://apurvakhangal.tech)**
 
 ---
 
-## 🧑‍💻 About Me
+## About Me :))
 
 I'm a **Computer Engineering student at Sardar Patel Institute of Technology (SPIT)** and I'm passionate about building intelligent systems and creating digital experiences that actually work well.
 
@@ -30,7 +30,7 @@ I try to approach every project with a balance between **technical depth and tho
 
 ---
 
-## 🚀 Projects Featured
+## Projects Featured xD
 
 Here are some of the key projects I've worked on:
 
@@ -51,7 +51,7 @@ A machine learning system that detects malicious URLs using feature engineering 
 
 ---
 
-## 🛠 Tech Stack
+## Tech Stack T-T
 
 ### **Frontend**
 * React – for building interactive UIs
@@ -71,7 +71,7 @@ A machine learning system that detects malicious URLs using feature engineering 
 
 ---
 
-## 🎨 Design Philosophy
+## Design Philosophy <3
 
 When building this portfolio, I focused on a few key things:
 
@@ -87,7 +87,7 @@ The design philosophy is simple: **clarity first, creativity second**. Technolog
 
 ---
 
-## 📫 Get In Touch
+## Get In Touch ;)
 
 I'd love to connect! Whether you want to collaborate, discuss ideas, or just chat about tech:
 
@@ -97,4 +97,4 @@ I'd love to connect! Whether you want to collaborate, discuss ideas, or just cha
 
 ---
 
-Thanks for taking the time to explore my work! 🙌
+Thanks for taking the time to explore my work!!!
