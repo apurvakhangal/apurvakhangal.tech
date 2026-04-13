@@ -1,8 +1,10 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 
 export function Navbar() {
   const { scrollY } = useScroll();
+  const location = useLocation();
   const [activeSection, setActiveSection] = useState('');
   
   // Navbar content appears when scroll > 100px.
@@ -16,6 +18,12 @@ export function Navbar() {
 
   // Track active section based on scroll position
   useEffect(() => {
+    // On non-home routes, statically highlight "Projects" and skip scroll tracking
+    if (location.pathname !== '/') {
+      setActiveSection('projects');
+      return;
+    }
+
     const handleScroll = () => {
       const sections = ['about', 'projects', 'skills', 'contact'];
       let closestSection = '';
@@ -43,7 +51,7 @@ export function Navbar() {
     window.addEventListener('scroll', handleScroll);
     handleScroll(); // Call once on mount
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [location.pathname]);
 
   const navItems = [
     { label: 'About me', id: 'about' },
