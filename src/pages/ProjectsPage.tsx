@@ -12,7 +12,15 @@ import { projects, type Project } from "@/data/projects";
 type Filter = "All" | "AI" | "Web" | "ML" | "UI/UX";
 type Tag = Exclude<Filter, "All">;
 
-const ProjectGridCard = ({ project, index }: { project: Project; index: number }) => {
+const ProjectGridCard = ({
+  project,
+  index,
+  onSelect,
+}: {
+  project: Project;
+  index: number;
+  onSelect: (slug: string) => void;
+}) => {
   const isUiUx = project.category === "UI / UX";
   const badgeClass = isUiUx
     ? "bg-purple-500/20 text-purple-300 border-purple-400/40"
@@ -27,6 +35,15 @@ const ProjectGridCard = ({ project, index }: { project: Project; index: number }
     viewport={{ once: true, amount: 0.25 }}
     transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.05 }}
     whileHover={{ y: -8, scale: 1.02 }}
+    onClick={() => onSelect(project.slug)}
+    onKeyDown={(event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        onSelect(project.slug);
+      }
+    }}
+    role="button"
+    tabIndex={0}
     style={{ willChange: "transform" }}
   >
     <div className="relative w-full h-[460px] rounded-3xl bg-white/[0.05] backdrop-blur-lg border border-white/10 p-8 overflow-hidden flex flex-col justify-between cursor-pointer transition-all duration-300 group-hover:border-blue-400/60 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] group-hover:shadow-[0_0_50px_rgba(96,165,250,0.35),inset_0_1px_0_rgba(255,255,255,0.1)]">
@@ -64,17 +81,19 @@ const ProjectGridCard = ({ project, index }: { project: Project; index: number }
               ))}
             </div>
           </div>
-          <a
-            href={project.links?.demo || project.links?.github || "#"}
-            target="_blank"
-            rel="noopener noreferrer"
+          <button
+            type="button"
+            onClick={(event) => {
+              event.stopPropagation();
+              onSelect(project.slug);
+            }}
             className="inline-flex items-center gap-2 text-blue-300 font-mono text-sm transition-all duration-300 hover:text-blue-200 opacity-70 group-hover:opacity-100 group-hover:translate-x-2"
           >
             <span>{ctaText}</span>
             <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
               →
             </span>
-          </a>
+          </button>
         </div>
       </div>
     </div>
@@ -94,6 +113,10 @@ function ProjectsExperience() {
     const tags = project.tags ?? [];
     return tags.includes(activeFilter as Tag);
   });
+
+  const handleSelectProject = (slug: string) => {
+    navigate(`/projects/${slug}`);
+  };
 
   return (
     <div className="flex flex-col w-full">
@@ -156,7 +179,12 @@ function ProjectsExperience() {
 
           <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-stretch relative z-20">
             {filteredProjects.map((project, index) => (
-              <ProjectGridCard key={project.id} project={project} index={index} />
+              <ProjectGridCard
+                key={project.id}
+                project={project}
+                index={index}
+                onSelect={handleSelectProject}
+              />
             ))}
           </section>
           <div aria-hidden="true" className="h-10" />

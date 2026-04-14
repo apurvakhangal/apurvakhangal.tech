@@ -1,5 +1,6 @@
 export interface Project {
   id: string;
+  slug: string;
   title: string;
   category: string;
   shortDescription: string;
@@ -18,6 +19,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: "ayashield",
+    slug: "ayashield",
     title: "AyaShield",
     category: "AI / DeFi",
     shortDescription:
@@ -34,11 +36,13 @@ export const projects: Project[] = [
     color: "from-blue-500 to-cyan-500",
     links: {
       demo: "https://ayashield.vercel.app/",
+      github: "https://github.com/apurvakhangal/AyaShield",
     },
     tags: ["AI", "Web", "ML"],
   },
   {
     id: "edura",
+    slug: "edura",
     title: "Edura",
     category: "AI / Education",
     shortDescription:
@@ -60,6 +64,7 @@ export const projects: Project[] = [
   },
   {
     id: "unmasked",
+    slug: "unmasked",
     title: "Unmasked",
     category: "Computer Vision",
     shortDescription:
@@ -81,6 +86,7 @@ export const projects: Project[] = [
   },
   {
     id: "brain-wheelchair",
+    slug: "brain-operated-wheelchair",
     title: "Brain Operated Wheelchair",
     category: "BCI / IoT",
     shortDescription:
@@ -102,6 +108,7 @@ export const projects: Project[] = [
   },
   {
     id: "phishing-detection",
+    slug: "phishing-url-detection",
     title: "Phishing URL Detection",
     category: "Security / ML",
     shortDescription:
@@ -123,6 +130,7 @@ export const projects: Project[] = [
   },
   {
     id: "burger-king-redesign",
+    slug: "burger-king-redesign",
     title: "Burger King App Redesign",
     category: "UI / UX",
     shortDescription:

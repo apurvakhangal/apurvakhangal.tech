@@ -119,6 +119,7 @@ export function ProjectsSection({ progress = 0 }: ProjectsSectionProps) {
           className={`relative w-full h-full rounded-3xl bg-white/[0.08] backdrop-blur-xl border p-8 overflow-hidden flex flex-col justify-between cursor-pointer transition-all duration-300 ${
             hoveredId === project.id ? 'border-blue-400/60' : 'border-white/10'
           }`}
+          onClick={() => navigate(`/projects/${project.slug}`)}
           style={{
             boxShadow:
               hoveredId === project.id
@@ -199,10 +200,12 @@ export function ProjectsSection({ progress = 0 }: ProjectsSectionProps) {
               </div>
 
               {/* Explore Arrow */}
-              <a
-                href={project.links?.demo || project.links?.github || '#'}
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                type="button"
+                onClick={(event) => {
+                  event.stopPropagation();
+                  navigate(`/projects/${project.slug}`);
+                }}
                 className="inline-flex items-center gap-2 text-blue-300 font-mono text-sm transition-all duration-300 hover:text-blue-200"
                 style={{
                   opacity: hoveredId === project.id ? 1 : 0.6,
@@ -219,7 +222,7 @@ export function ProjectsSection({ progress = 0 }: ProjectsSectionProps) {
                 >
                   →
                 </span>
-              </a>
+              </button>
             </div>
           </div>
         </div>
