@@ -12,7 +12,7 @@ export interface Project {
     github?: string;
     demo?: string;
   };
-  tags?: ("AI" | "Web" | "ML")[];
+  tags?: ("AI" | "Web" | "ML" | "UI/UX")[];
 }
 
 export const projects: Project[] = [
@@ -120,5 +120,26 @@ export const projects: Project[] = [
       github: "https://github.com/apurvakhangal/Python-Phishing-URL-ML",
     },
     tags: ["Web", "ML"],
+  },
+  {
+    id: "burger-king-redesign",
+    title: "Burger King App Redesign",
+    category: "UI / UX",
+    shortDescription:
+      "A UI/UX redesign of the Burger King mobile app aimed at simplifying navigation, reducing clutter, and improving personalization for a smoother ordering experience.",
+    fullDescription:
+      "A complete UI/UX redesign of the Burger King mobile app focused on improving navigation, reducing clutter, and enhancing personalization. The project involved user research, experience mapping, and iterative design to create a clean, intuitive, and modern interface.",
+    features: [
+      "User research and competitive analysis",
+      "Experience mapping and user flows",
+      "High-fidelity UI system and components",
+      "Interactive prototype for testing",
+    ],
+    techStack: ["Figma", "UX Research", "Wireframing", "Prototyping", "Design Thinking"],
+    color: "from-purple-500 to-indigo-500",
+    links: {
+      demo: "https://your-link",
+    },
+    tags: ["UI/UX"],
   },
 ];

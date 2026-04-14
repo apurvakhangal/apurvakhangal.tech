@@ -2,9 +2,20 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 
-export function Navbar() {
+type NavbarPosition = 'fixed' | 'sticky';
+type NavbarVariant = 'default' | 'project';
+
+export function Navbar({
+  position = 'fixed',
+  variant = 'default',
+}: {
+  position?: NavbarPosition;
+  variant?: NavbarVariant;
+}) {
   const { scrollY } = useScroll();
   const location = useLocation();
+  const isHome = location.pathname === '/';
+  const isProject = location.pathname === '/projects' || location.pathname.includes('projects');
   const [activeSection, setActiveSection] = useState('');
   
   // Navbar content appears when scroll > 100px.
@@ -77,17 +88,28 @@ export function Navbar() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const positionClass = position === 'sticky' ? 'sticky top-0' : 'fixed top-6';
+  const useProjectLayout = isProject || variant === 'project';
+  const navClass = isProject
+    ? 'fixed top-4 left-1/2 -translate-x-1/2 w-[90%] max-w-[1200px] z-50 pointer-events-none border border-white/10 rounded-2xl'
+    : `${positionClass} left-0 right-0 z-50 pointer-events-none px-4 md:px-24`;
+
+  const shellClass = useProjectLayout
+    ? 'flex items-center justify-between px-6 h-[64px] pointer-events-auto'
+    : 'relative w-full h-[64px] bg-[#111625]/90 backdrop-blur-xl border border-white/10 rounded-2xl flex items-center justify-between px-5 md:px-8 pointer-events-auto';
+
+  console.log('PATH:', location.pathname);
+  console.log('isProject:', useProjectLayout);
+
   return (
-    <motion.nav 
-      className="fixed top-6 left-0 right-0 z-50 pointer-events-none px-4 md:px-24 flex justify-center"
-    >
+    <motion.nav className={navClass}>
       <motion.div 
-        style={{ opacity: bgOpacity }}
-        className="relative w-full h-[64px] bg-[#111625]/90 backdrop-blur-xl border border-white/10 rounded-2xl flex items-center justify-between px-5 md:px-8 pointer-events-auto"
+        style={{ opacity: isHome ? bgOpacity : 1 }}
+        className={shellClass}
       >
         {/* Logo */}
         <motion.button
-          style={{ opacity: logoOpacity }}
+          style={{ opacity: isHome ? logoOpacity : 1 }}
           onClick={handleLogoClick}
           className="flex-shrink-0 w-10 h-10 flex items-center justify-center cursor-pointer hover:opacity-80 transition-opacity"
         >
@@ -95,11 +117,11 @@ export function Navbar() {
         </motion.button>
 
         {/* Menu and Resume */}
-        <motion.div style={{ opacity: contentOpacity }} className="flex items-center gap-6 md:gap-8 h-full">
+        <motion.div style={{ opacity: isHome ? contentOpacity : 1 }} className="flex items-center gap-6 md:gap-8 h-full">
           {navItems.map((item) => (
             <a 
               key={item.id}
-              href={`#${item.id}`} 
+              href={`/#${item.id}`} 
               className={getNavLinkClass(item.id)}
             >
               {item.label}
