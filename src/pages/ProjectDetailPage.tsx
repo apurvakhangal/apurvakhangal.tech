@@ -339,7 +339,7 @@ const ProjectDetailPage = () => {
                   AyaShield turns raw protocol data into consequence-driven intelligence.
                 </p>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {keyFeatures.map((feature) => (
                   <div
                     key={feature.title}
@@ -669,7 +669,7 @@ const ProjectDetailPage = () => {
               <div className="relative">
                 <div className="absolute -top-10 -right-10 w-40 h-40 bg-orange-500/20 blur-3xl" />
                 <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-red-500/20 blur-3xl" />
-                <div className="rounded-[2.75rem] border border-white/10 bg-white/[0.03] backdrop-blur-xl p-4 shadow-[0_0_40px_rgba(248,113,113,0.2)] max-w-[360px] mx-auto">
+                <div className="rounded-[2.75rem] border border-white/10 bg-white/[0.03] backdrop-blur-xl p-4 shadow-[0_0_40px_rgba(248,113,113,0.2)] max-w-[324px] mx-auto">
                   <div className="rounded-[2.5rem] border border-white/10 bg-black/60 p-2">
                     <div className="relative rounded-[2.25rem] border border-white/10 bg-black aspect-[9/19] overflow-hidden">
                       <img
@@ -927,7 +927,7 @@ const ProjectDetailPage = () => {
                     key={screen.title}
                     className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-5 space-y-4"
                   >
-                    <div className="rounded-[2.25rem] border border-white/10 bg-gradient-to-br from-orange-500/15 via-white/5 to-red-500/10 p-3">
+                    <div className="rounded-[2.25rem] border border-white/10 bg-gradient-to-br from-orange-500/15 via-white/5 to-red-500/10 p-3 w-[90%] mx-auto">
                       <div className="rounded-[2rem] border border-white/10 bg-black/60 p-2">
                         <div className="relative rounded-[1.75rem] border border-white/10 bg-black aspect-[9/19] overflow-hidden">
                           <img
@@ -1038,6 +1038,42 @@ const ProjectDetailPage = () => {
                     {tool}
                   </span>
                 ))}
+              </div>
+            </motion.section>
+
+            <motion.section
+              className="space-y-6"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <div className="space-y-2">
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">Case Study Video</p>
+                <h2 className="text-3xl md:text-4xl font-semibold text-white">Watch the redesign flow</h2>
+              </div>
+              <div className="rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-lg p-4 shadow-[0_0_40px_rgba(248,113,113,0.15)]">
+                <div className="max-w-[324px] mx-auto">
+                  <div className="rounded-[2.25rem] border border-white/10 bg-gradient-to-br from-orange-500/15 via-white/5 to-red-500/10 p-3">
+                    <div className="rounded-[2rem] border border-white/10 bg-black/60 p-2">
+                      <div className="relative rounded-[1.75rem] border border-white/10 bg-black aspect-[9/19] overflow-hidden">
+                        <video
+                          className="w-full h-full object-cover"
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                          controls
+                          preload="metadata"
+                        >
+                          <source src="/uiux/BK-Video.mp4" type="video/mp4" />
+                          Your browser does not support the video tag.
+                        </video>
+                        <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-12 h-2 rounded-full bg-white/10" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </motion.section>
 
