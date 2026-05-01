@@ -411,6 +411,696 @@ const ProjectDetailPage = () => {
     );
   }
 
+  if (project.slug === "burger-king-redesign") {
+    const overviewCards = [
+      {
+        title: "Goal",
+        description:
+          "Improve UX, navigation, and interface clarity for faster, simpler ordering.",
+      },
+      {
+        title: "Problems",
+        description:
+          "Cluttered menus, confusing flows, weak CTAs, and limited personalization.",
+      },
+      {
+        title: "Outcome",
+        description:
+          "A clean, intuitive experience with smarter discovery and ordering.",
+      },
+    ];
+
+    const keyAdditions = [
+      "Personalized home screen",
+      "Hamburger menu navigation",
+      "Crazy Deals section",
+      "Improved store locator",
+    ];
+
+    const userStruggles = [
+      "Cluttered UI that overwhelms new users",
+      "Confusing navigation and inconsistent hierarchy",
+      "Weak search and filtering for quick decisions",
+      "Low-visibility CTAs during ordering",
+      "Lack of personalization for returning users",
+      "Order tracking that feels buried and unclear",
+    ];
+
+    const researchBlocks = [
+      {
+        title: "Primary Research",
+        label: "Google Forms survey",
+        description:
+          "Focused on Gen Z users to validate core UX pain points and ordering behavior.",
+      },
+      {
+        title: "Secondary Research",
+        label: "App Store, Play Store, Reddit",
+        description:
+          "Real user reviews revealed consistent frustrations with navigation, speed, and clarity.",
+      },
+    ];
+
+    const personas = [
+      {
+        name: "Budget Benny",
+        role: "Deal-focused student",
+        goals: ["Find the best deals fast", "Compare bundles easily"],
+        painPoints: ["Deals feel hidden", "Too many taps to checkout"],
+      },
+      {
+        name: "Late Nate",
+        role: "Impatient late-night user",
+        goals: ["Reorder quickly", "Track delivery in one place"],
+        painPoints: ["Navigation slows him down", "Tracking lacks clarity"],
+      },
+      {
+        name: "Fit Krit",
+        role: "Health-conscious user",
+        goals: ["Find lighter options", "Customize ingredients"],
+        painPoints: ["Filters are weak", "Customization feels buried"],
+      },
+    ];
+
+    const journeyStages = [
+      {
+        stage: "Discover",
+        detail: "Users hunt for deals and decide what to order.",
+        pain: "Navigation hides the best offers.",
+      },
+      {
+        stage: "Customize",
+        detail: "Users adjust items and add sides.",
+        pain: "Customization feels dense and unclear.",
+      },
+      {
+        stage: "Pay",
+        detail: "Users complete checkout quickly.",
+        pain: "Too many steps before confirmation.",
+      },
+      {
+        stage: "Track",
+        detail: "Users check order status and ETA.",
+        pain: "Tracking is buried in the UI.",
+      },
+    ];
+
+    const insights = [
+      "Confusing layout",
+      "Unorganized menu",
+      "Cluttered UI",
+      "Lack of personalization",
+      "Weak CTAs",
+      "Poor search",
+      "Order tracking issues",
+    ];
+
+    const designSolutions = [
+      "Cleaner layout with stronger visual hierarchy",
+      "Simplified navigation with a hamburger menu",
+      "Reduced steps from discovery to checkout",
+      "Improved visibility for offers and CTAs",
+      "Personalized experiences on the home screen",
+    ];
+
+    const designScreens = [
+      {
+        title: "Landing Page",
+        description: "A black-and-white palette sets a premium, focused tone.",
+        image: "/uiux/onboarding.png",
+        alt: "Burger King onboarding screen",
+      },
+      {
+        title: "Login / Signup",
+        description: "A welcoming entry with clear value and action.",
+        image: "/uiux/login%20page.png",
+        alt: "Burger King login screen",
+      },
+      {
+        title: "Home Page",
+        description: "Greeting, search, and deals are surfaced instantly.",
+        image: "/uiux/home.png",
+        alt: "Burger King home screen",
+      },
+      {
+        title: "Crown Rewards",
+        description: "Centralized rewards with a bold crown hero.",
+        image: "/uiux/Crown%20Rewards.png",
+        alt: "Burger King crown rewards screen",
+      },
+      {
+        title: "Store Locator",
+        description: "Clean cards improve scanability and clarity.",
+        image: "/uiux/finding%20nearby%20stores.png",
+        alt: "Burger King store locator screen",
+      },
+      {
+        title: "Crazy Deals",
+        description: "A dedicated deals hub for high-intent users.",
+        image: "/uiux/Crazy%20app%20deals.png",
+        alt: "Burger King crazy deals screen",
+      },
+      {
+        title: "Customize Order",
+        description: "A focused customization flow with fewer steps.",
+        image: "/uiux/Customise%20Order-1.png",
+        alt: "Burger King order customization screen",
+      },
+      {
+        title: "Menu",
+        description: "Reduced clutter with organized categories.",
+        image: "/uiux/menu.png",
+        alt: "Burger King menu screen",
+      },
+      {
+        title: "Category Pages",
+        description: "Focused browsing with stronger visual grouping.",
+        image: "/uiux/burgers.png",
+        alt: "Burger King category listing screen",
+      },
+    ];
+
+    const wireframeNotes = [
+      "Full user flow mapped from discovery to tracking.",
+      "Iteration cycles focused on speed and clarity.",
+      "Layout tests validated hierarchy before UI polish.",
+    ];
+
+    const impactPoints = [
+      "Reduced cognitive load during browsing",
+      "Faster ordering with fewer decision steps",
+      "Cleaner UX for first-time and returning users",
+      "Better engagement through personalized content",
+    ];
+
+    const learningPoints = [
+      "UX is built on user behavior, not just visuals.",
+      "Balance creativity with usability and speed.",
+      "Small changes create measurable impact at scale.",
+    ];
+
+    const prototypeUrl = project.links?.demo;
+    const prototypeEmbedUrl = prototypeUrl
+      ? `https://www.figma.com/embed?embed_host=share&url=${encodeURIComponent(prototypeUrl)}`
+      : "about:blank";
+
+    return (
+      <div className="flex flex-col w-full">
+        <CustomCursor mousePosition={mousePosition} />
+        <GlowCursorTrail />
+        <div className="fixed top-0 left-0 w-full h-[140px] bg-[#0b1220]/80 backdrop-blur-xl z-30" />
+        <Navbar variant="project" />
+        <ScrollProgressBar progress={progress} mode="fixed" />
+
+        <div className="fixed inset-0 z-0 pointer-events-none">
+          <NeuralScene scrollProgress={progress} mousePosition={mousePosition} />
+        </div>
+
+        <div className="relative z-10 w-full pt-[140px]">
+          <main className="flex flex-col max-w-6xl mx-auto px-6 md:px-10 lg:px-12 pb-24 gap-16">
+            <motion.section
+              className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center"
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <div className="space-y-6">
+                <button
+                  type="button"
+                  onClick={() => navigate("/projects")}
+                  className="inline-flex items-center gap-2 text-sm font-mono text-white/60 hover:text-white transition-colors w-fit"
+                >
+                  <span className="text-lg">←</span>
+                  <span>Back to Projects</span>
+                </button>
+
+                <div className="space-y-4">
+                  <span className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.15em] px-3 py-1 rounded-full border bg-orange-500/15 text-orange-200 border-orange-400/40 w-fit">
+                    UI / UX
+                  </span>
+                  <h1 className="text-4xl md:text-6xl font-semibold text-white leading-tight">
+                    Burger King App Redesign
+                  </h1>
+                  <p className="text-white/70 text-base md:text-lg max-w-2xl">
+                    Enhancing user experience through cleaner design, better navigation, and smarter interactions.
+                  </p>
+                </div>
+
+                <div className="flex flex-wrap gap-3">
+                  {prototypeUrl ? (
+                    <a
+                      href={prototypeUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-500/20 border border-orange-400/40 text-orange-100 text-sm font-mono hover:bg-orange-500/30 transition-all"
+                    >
+                      View Prototype →
+                    </a>
+                  ) : null}
+                  <a
+                    href="#case-study"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/70 text-sm font-mono hover:text-white transition-all"
+                  >
+                    Scroll to Case Study ↓
+                  </a>
+                </div>
+              </div>
+
+              <div className="relative">
+                <div className="absolute -top-10 -right-10 w-40 h-40 bg-orange-500/20 blur-3xl" />
+                <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-red-500/20 blur-3xl" />
+                <div className="rounded-[2.75rem] border border-white/10 bg-white/[0.03] backdrop-blur-xl p-4 shadow-[0_0_40px_rgba(248,113,113,0.2)] max-w-[360px] mx-auto">
+                  <div className="rounded-[2.5rem] border border-white/10 bg-black/60 p-2">
+                    <div className="relative rounded-[2.25rem] border border-white/10 bg-black aspect-[9/19] overflow-hidden">
+                      <img
+                        src="/uiux/home.png"
+                        alt="Burger King redesign home screen"
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                      <div className="absolute top-3 left-1/2 -translate-x-1/2 w-16 h-2.5 rounded-full bg-white/10" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.section>
+
+            <motion.section
+              id="case-study"
+              className="space-y-8"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <div className="space-y-2">
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">Project Overview</p>
+                <h2 className="text-3xl md:text-4xl font-semibold text-white">A clearer, faster ordering experience</h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {overviewCards.map((card) => (
+                  <div
+                    key={card.title}
+                    className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-5"
+                  >
+                    <h3 className="text-white font-semibold mb-2">{card.title}</h3>
+                    <p className="text-white/60 text-sm leading-relaxed">{card.description}</p>
+                  </div>
+                ))}
+              </div>
+              <div className="rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-lg p-6">
+                <p className="text-white/60 text-xs font-mono uppercase tracking-[0.2em] mb-3">Key Additions</p>
+                <div className="flex flex-wrap gap-3">
+                  {keyAdditions.map((item) => (
+                    <span
+                      key={item}
+                      className="text-xs px-3 py-1.5 rounded-lg bg-white/10 text-white/80 border border-white/20 font-mono"
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.section>
+
+            <motion.section
+              className="space-y-6"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <div className="space-y-2">
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">The Problem</p>
+                <h2 className="text-3xl md:text-4xl font-semibold text-white">What users struggle with</h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {userStruggles.map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-4"
+                  >
+                    <p className="text-white/70 text-sm">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.section>
+
+            <motion.section
+              className="space-y-6"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <div className="space-y-2">
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">Research</p>
+                <h2 className="text-3xl md:text-4xl font-semibold text-white">Listening to real user feedback</h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {researchBlocks.map((block) => (
+                  <div
+                    key={block.title}
+                    className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-5"
+                  >
+                    <p className="text-xs font-mono uppercase tracking-[0.2em] text-orange-200/70 mb-2">
+                      {block.title}
+                    </p>
+                    <h3 className="text-white font-semibold mb-2">{block.label}</h3>
+                    <p className="text-white/60 text-sm leading-relaxed">{block.description}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.section>
+
+            <motion.section
+              className="space-y-6"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <div className="space-y-2">
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">User Personas</p>
+                <h2 className="text-3xl md:text-4xl font-semibold text-white">Three core user types</h2>
+              </div>
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                {personas.map((persona) => (
+                  <div
+                    key={persona.name}
+                    className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-5"
+                  >
+                    <h3 className="text-white font-semibold">{persona.name}</h3>
+                    <p className="text-white/50 text-sm mb-4">{persona.role}</p>
+                    <div className="space-y-3">
+                      <div>
+                        <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40 mb-2">Goals</p>
+                        <ul className="text-white/70 text-sm space-y-1 list-disc list-inside">
+                          {persona.goals.map((goal) => (
+                            <li key={goal}>{goal}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div>
+                        <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40 mb-2">Pain Points</p>
+                        <ul className="text-white/70 text-sm space-y-1 list-disc list-inside">
+                          {persona.painPoints.map((pain) => (
+                            <li key={pain}>{pain}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.section>
+
+            <motion.section
+              className="space-y-6"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <div className="space-y-2">
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">Experience Mapping</p>
+                <h2 className="text-3xl md:text-4xl font-semibold text-white">Journey pain points across the flow</h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {journeyStages.map((stage) => (
+                  <div
+                    key={stage.stage}
+                    className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-5"
+                  >
+                    <h3 className="text-white font-semibold mb-2">{stage.stage}</h3>
+                    <p className="text-white/60 text-sm mb-3">{stage.detail}</p>
+                    <p className="text-white/70 text-sm">{stage.pain}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.section>
+
+            <motion.section
+              className="space-y-6"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <div className="space-y-2">
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">UX Insights</p>
+                <h2 className="text-3xl md:text-4xl font-semibold text-white">Validated themes from research</h2>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {insights.map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-4"
+                  >
+                    <p className="text-white/70 text-sm">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.section>
+
+            <motion.section
+              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-6">
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40 mb-3">Problem Statement</p>
+                <h3 className="text-white font-semibold mb-2">The current app creates confusion and friction.</h3>
+                <p className="text-white/60 text-sm">
+                  A cluttered interface and inconsistent navigation slow users down and reduce confidence during ordering.
+                </p>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-6">
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40 mb-3">Goal</p>
+                <h3 className="text-white font-semibold mb-2">Deliver a smooth, intuitive experience.</h3>
+                <p className="text-white/60 text-sm">
+                  Make discovery, customization, and tracking feel effortless with clear structure and personalization.
+                </p>
+              </div>
+            </motion.section>
+
+            <motion.section
+              className="space-y-6"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <div className="space-y-2">
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">Design Solution</p>
+                <h2 className="text-3xl md:text-4xl font-semibold text-white">How we solved it</h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {designSolutions.map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-4"
+                  >
+                    <p className="text-white/70 text-sm">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.section>
+
+            <motion.section
+              id="design-screens"
+              className="space-y-6"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <div className="space-y-2">
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">Design Screens</p>
+                <h2 className="text-3xl md:text-4xl font-semibold text-white">Core UI moments</h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {designScreens.map((screen) => (
+                  <div
+                    key={screen.title}
+                    className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-5 space-y-4"
+                  >
+                    <div className="rounded-[2.25rem] border border-white/10 bg-gradient-to-br from-orange-500/15 via-white/5 to-red-500/10 p-3">
+                      <div className="rounded-[2rem] border border-white/10 bg-black/60 p-2">
+                        <div className="relative rounded-[1.75rem] border border-white/10 bg-black aspect-[9/19] overflow-hidden">
+                          <img
+                            src={screen.image}
+                            alt={screen.alt}
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                          />
+                          <div className="absolute top-2.5 left-1/2 -translate-x-1/2 w-12 h-2 rounded-full bg-white/10" />
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-white font-semibold mb-2">{screen.title}</h3>
+                      <p className="text-white/60 text-sm leading-relaxed">{screen.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </motion.section>
+
+            <motion.section
+              className="space-y-6"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <div className="space-y-2">
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">Wireframes</p>
+                <h2 className="text-3xl md:text-4xl font-semibold text-white">Mapping the full flow</h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {wireframeNotes.map((note) => (
+                  <div
+                    key={note}
+                    className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-5"
+                  >
+                    <p className="text-white/70 text-sm leading-relaxed">{note}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.section>
+
+            <motion.section
+              className="space-y-6"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <div className="space-y-2">
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">Final Impact</p>
+                <h2 className="text-3xl md:text-4xl font-semibold text-white">Results that improve the experience</h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {impactPoints.map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-4"
+                  >
+                    <p className="text-white/70 text-sm">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.section>
+
+            <motion.section
+              className="space-y-6"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <div className="space-y-2">
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">Learnings</p>
+                <h2 className="text-3xl md:text-4xl font-semibold text-white">What this project reinforced</h2>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {learningPoints.map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-4"
+                  >
+                    <p className="text-white/70 text-sm">{item}</p>
+                  </div>
+                ))}
+              </div>
+            </motion.section>
+
+            <motion.section
+              className="space-y-6"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <div className="space-y-2">
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">Tools</p>
+                <h2 className="text-3xl md:text-4xl font-semibold text-white">Design toolkit</h2>
+              </div>
+              <div className="flex flex-wrap gap-3">
+                {project.techStack.map((tool) => (
+                  <span
+                    key={tool}
+                    className="text-sm px-4 py-2 rounded-full bg-white/10 text-white/80 border border-white/20 font-mono"
+                  >
+                    {tool}
+                  </span>
+                ))}
+              </div>
+            </motion.section>
+
+            <motion.section
+              id="prototype"
+              className="space-y-6"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <div className="space-y-2">
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">Prototype</p>
+                <h2 className="text-3xl md:text-4xl font-semibold text-white">Explore the interactive flow</h2>
+              </div>
+              <div className="rounded-3xl border border-white/10 overflow-hidden shadow-[0_0_40px_rgba(248,113,113,0.15)]">
+                <iframe
+                  title="Burger King Redesign Prototype"
+                  src={prototypeEmbedUrl}
+                  className="w-full h-[600px]"
+                  loading="lazy"
+                />
+              </div>
+            </motion.section>
+
+            <motion.section
+              className="flex flex-col items-center gap-4 text-center"
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+            >
+              <h2 className="text-3xl md:text-4xl font-semibold text-white">
+                Designed to make ordering faster, simpler, and more enjoyable
+              </h2>
+              <p className="text-white/60 text-sm md:text-base max-w-2xl">
+                A premium UX case study focused on clarity, speed, and personalization.
+              </p>
+              <div className="flex flex-wrap justify-center gap-3">
+                {prototypeUrl ? (
+                  <a
+                    href={prototypeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-orange-500/20 border border-orange-400/40 text-orange-100 text-sm font-mono hover:bg-orange-500/30 transition-all"
+                  >
+                    View Prototype →
+                  </a>
+                ) : null}
+                <a
+                  href="#design-screens"
+                  className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 border border-white/10 text-white/70 text-sm font-mono hover:text-white transition-all"
+                >
+                  View Full Design ↓
+                </a>
+              </div>
+            </motion.section>
+          </main>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col w-full">
       <CustomCursor mousePosition={mousePosition} />

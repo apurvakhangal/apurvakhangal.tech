@@ -144,9 +144,9 @@ export const projects: Project[] = [
       "Interactive prototype for testing",
     ],
     techStack: ["Figma", "UX Research", "Wireframing", "Prototyping", "Design Thinking"],
-    color: "from-purple-500 to-indigo-500",
+    color: "from-orange-500 to-red-500",
     links: {
-      demo: "https://your-link",
+      demo: "https://www.figma.com/design/ADNA5sIqak5yyAo4W05BrL/Burger-King-Redesignnnnn?node-id=0-1&t=1pR9c7RO1cXnlrV4-1",
     },
     tags: ["UI/UX"],
   },
