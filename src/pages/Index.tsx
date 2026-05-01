@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { NeuralScene } from '@/components/neural/NeuralScene';
 import { CustomCursor } from '@/components/ui/CustomCursor';
@@ -17,16 +17,14 @@ import { Footer } from '@/components/sections/Footer';
 function NeuralExperience() {
   const { progress } = useScrollProgress();
   const { scrollY } = useScroll();
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const mousePositionRef = useRef({ x: 0, y: 0 });
   
   // Overlay opacity matches navbar background appearance
   const overlayOpacity = useTransform(scrollY, [200, 400], [0, 1], { clamp: true });
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
-    setMousePosition({
-      x: (e.clientX / window.innerWidth - 0.5) * 2,
-      y: -(e.clientY / window.innerHeight - 0.5) * 2,
-    });
+    mousePositionRef.current.x = (e.clientX / window.innerWidth - 0.5) * 2;
+    mousePositionRef.current.y = -(e.clientY / window.innerHeight - 0.5) * 2;
   }, []);
 
   useEffect(() => {
@@ -64,14 +62,14 @@ function NeuralExperience() {
 
     return (
     <div className="flex flex-col w-full">
-      <CustomCursor mousePosition={mousePosition} />
+      <CustomCursor mousePosition={mousePositionRef.current} />
       <GlowCursorTrail />
       <Navbar />
       <ScrollProgressBar progress={progress} />
       
       {/* Container for NeuralScene that stays fixed in background */}
       <div className="fixed inset-0 z-0 pointer-events-none">
-        <NeuralScene scrollProgress={progress} mousePosition={mousePosition} />
+        <NeuralScene scrollProgress={progress} mousePosition={mousePositionRef.current} />
       </div>
       
       {/* Content Mask Overlay - prevents content from appearing above navbar/progress area */}
@@ -85,9 +83,9 @@ function NeuralExperience() {
         {/* Native scrollable layout */}
         <main className="flex flex-col">
           <HeroSection progress={progress} />
-          <AboutSection progress={progress} />
-          <ProjectsSection progress={progress} />
-          <SkillsSection progress={progress} />
+          <AboutSection />
+          <ProjectsSection />
+          <SkillsSection />
         </main>
       </div>
       

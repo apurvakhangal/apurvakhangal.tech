@@ -1,10 +1,6 @@
 import { motion } from 'framer-motion';
 
-interface SkillsSectionProps {
-  progress?: number;
-}
-
-export function SkillsSection({ progress }: SkillsSectionProps) {
+export function SkillsSection() {
   const mainSkillSections = [
     {
       title: "FRONTEND & DESIGN",

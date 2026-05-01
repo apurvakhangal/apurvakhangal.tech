@@ -1,60 +1,291 @@
 import { motion } from "framer-motion";
+import { useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { NeuralScene } from "@/components/neural/NeuralScene";
-import { CustomCursor } from "@/components/ui/CustomCursor";
-import { GlowCursorTrail } from "@/components/ui/GlowCursorTrail";
-import { Navbar } from "@/components/ui/Navbar";
-import { ScrollProgressBar } from "@/components/ui/ScrollProgressBar";
+import { ProjectPageShell } from "@/components/layout/ProjectPageShell";
 import { useScrollProgress } from "@/hooks/useScrollProgress";
 import { projects } from "@/data/projects";
+
+const AYASHIELD_CONTENT = {
+  solutionPillars: [
+    {
+      title: "Transparency",
+      description: "Every score exposes its exact formula and weights.",
+    },
+    {
+      title: "Explainability",
+      description: "AI explains why risk exists, not just what it is.",
+    },
+    {
+      title: "Simulation",
+      description: "Model outcomes before committing capital.",
+    },
+    {
+      title: "Accessibility",
+      description: "Risk intelligence for everyone, not just quants.",
+    },
+  ],
+  keyFeatures: [
+    {
+      title: "Risk Intelligence Engine",
+      description: "Bloomberg-grade risk terminal with transparent scoring and confidence meters.",
+    },
+    {
+      title: "Scenario Simulation",
+      description: "Bull, neutral, bear, and crash multipliers for position outcomes.",
+    },
+    {
+      title: "Liquidity Modeling",
+      description: "Exit impact at $10k–$500k tiers with slippage projections.",
+    },
+    {
+      title: "AI Copilot",
+      description: "Structured explanations for risk drivers and mitigation steps.",
+    },
+    {
+      title: "Voice Assistant",
+      description: "Hands-free risk analysis with speech input/output.",
+    },
+    {
+      title: "Security Dashboard",
+      description: "Exploit tracking, attack type analytics, and incident insights.",
+    },
+  ],
+  techStack: [
+    "React",
+    "TypeScript",
+    "Tailwind",
+    "Zustand",
+    "Express",
+    "AI Layer",
+    "Recharts",
+    "Framer Motion",
+  ],
+  howItWorks: [
+    {
+      title: "Weighted Risk Score",
+      description:
+        "Volatility, liquidity, contract, behavioral, and scam signals blend into a transparent weighted score.",
+    },
+    {
+      title: "Scenario Multipliers",
+      description:
+        "Market conditions adjust the base score to reveal worst-case and best-case outcomes.",
+    },
+    {
+      title: "Liquidity Impact",
+      description:
+        "Exit simulations model slippage at multiple capital tiers to reveal hidden risk.",
+    },
+  ],
+};
+
+const BURGER_KING_CASE_STUDY = {
+  overviewCards: [
+    {
+      title: "Goal",
+      description: "Improve UX, navigation, and interface clarity for faster, simpler ordering.",
+    },
+    {
+      title: "Problems",
+      description: "Cluttered menus, confusing flows, weak CTAs, and limited personalization.",
+    },
+    {
+      title: "Outcome",
+      description: "A clean, intuitive experience with smarter discovery and ordering.",
+    },
+  ],
+  keyAdditions: [
+    "Personalized home screen",
+    "Hamburger menu navigation",
+    "Crazy Deals section",
+    "Improved store locator",
+  ],
+  userStruggles: [
+    "Cluttered UI that overwhelms new users",
+    "Confusing navigation and inconsistent hierarchy",
+    "Weak search and filtering for quick decisions",
+    "Low-visibility CTAs during ordering",
+    "Lack of personalization for returning users",
+    "Order tracking that feels buried and unclear",
+  ],
+  researchBlocks: [
+    {
+      title: "Primary Research",
+      label: "Google Forms survey",
+      description: "Focused on Gen Z users to validate core UX pain points and ordering behavior.",
+    },
+    {
+      title: "Secondary Research",
+      label: "App Store, Play Store, Reddit",
+      description: "Real user reviews revealed consistent frustrations with navigation, speed, and clarity.",
+    },
+  ],
+  personas: [
+    {
+      name: "Budget Benny",
+      role: "Deal-focused student",
+      goals: ["Find the best deals fast", "Compare bundles easily"],
+      painPoints: ["Deals feel hidden", "Too many taps to checkout"],
+    },
+    {
+      name: "Late Nate",
+      role: "Impatient late-night user",
+      goals: ["Reorder quickly", "Track delivery in one place"],
+      painPoints: ["Navigation slows him down", "Tracking lacks clarity"],
+    },
+    {
+      name: "Fit Krit",
+      role: "Health-conscious user",
+      goals: ["Find lighter options", "Customize ingredients"],
+      painPoints: ["Filters are weak", "Customization feels buried"],
+    },
+  ],
+  journeyStages: [
+    {
+      stage: "Discover",
+      detail: "Users hunt for deals and decide what to order.",
+      pain: "Navigation hides the best offers.",
+    },
+    {
+      stage: "Customize",
+      detail: "Users adjust items and add sides.",
+      pain: "Customization feels dense and unclear.",
+    },
+    {
+      stage: "Pay",
+      detail: "Users complete checkout quickly.",
+      pain: "Too many steps before confirmation.",
+    },
+    {
+      stage: "Track",
+      detail: "Users check order status and ETA.",
+      pain: "Tracking is buried in the UI.",
+    },
+  ],
+  insights: [
+    "Confusing layout",
+    "Unorganized menu",
+    "Cluttered UI",
+    "Lack of personalization",
+    "Weak CTAs",
+    "Poor search",
+    "Order tracking issues",
+  ],
+  designSolutions: [
+    "Cleaner layout with stronger visual hierarchy",
+    "Simplified navigation with a hamburger menu",
+    "Reduced steps from discovery to checkout",
+    "Improved visibility for offers and CTAs",
+    "Personalized experiences on the home screen",
+  ],
+  designScreens: [
+    {
+      title: "Landing Page",
+      description: "A black-and-white palette sets a premium, focused tone.",
+      image: "/uiux/onboarding.png",
+      alt: "Burger King onboarding screen",
+    },
+    {
+      title: "Login / Signup",
+      description: "A welcoming entry with clear value and action.",
+      image: "/uiux/login%20page.png",
+      alt: "Burger King login screen",
+    },
+    {
+      title: "Home Page",
+      description: "Greeting, search, and deals are surfaced instantly.",
+      image: "/uiux/home.png",
+      alt: "Burger King home screen",
+    },
+    {
+      title: "Crown Rewards",
+      description: "Centralized rewards with a bold crown hero.",
+      image: "/uiux/Crown%20Rewards.png",
+      alt: "Burger King crown rewards screen",
+    },
+    {
+      title: "Store Locator",
+      description: "Clean cards improve scanability and clarity.",
+      image: "/uiux/finding%20nearby%20stores.png",
+      alt: "Burger King store locator screen",
+    },
+    {
+      title: "Crazy Deals",
+      description: "A dedicated deals hub for high-intent users.",
+      image: "/uiux/Crazy%20app%20deals.png",
+      alt: "Burger King crazy deals screen",
+    },
+    {
+      title: "Customize Order",
+      description: "A focused customization flow with fewer steps.",
+      image: "/uiux/Customise%20Order-1.png",
+      alt: "Burger King order customization screen",
+    },
+    {
+      title: "Menu",
+      description: "Reduced clutter with organized categories.",
+      image: "/uiux/menu.png",
+      alt: "Burger King menu screen",
+    },
+    {
+      title: "Category Pages",
+      description: "Focused browsing with stronger visual grouping.",
+      image: "/uiux/burgers.png",
+      alt: "Burger King category listing screen",
+    },
+  ],
+  wireframeNotes: [
+    "Full user flow mapped from discovery to tracking.",
+    "Iteration cycles focused on speed and clarity.",
+    "Layout tests validated hierarchy before UI polish.",
+  ],
+  impactPoints: [
+    "Reduced cognitive load during browsing",
+    "Faster ordering with fewer decision steps",
+    "Cleaner UX for first-time and returning users",
+    "Better engagement through personalized content",
+  ],
+  learningPoints: [
+    "UX is built on user behavior, not just visuals.",
+    "Balance creativity with usability and speed.",
+    "Small changes create measurable impact at scale.",
+  ],
+};
 
 const ProjectDetailPage = () => {
   const navigate = useNavigate();
   const { slug } = useParams();
   const { progress } = useScrollProgress();
-  const mousePosition = { x: 0, y: 0 };
-
-  const project = projects.find((item) => item.slug === slug);
+  const project = useMemo(() => projects.find((item) => item.slug === slug), [slug]);
 
   if (!project) {
     return (
-      <div className="flex flex-col w-full">
-        <CustomCursor mousePosition={mousePosition} />
-        <GlowCursorTrail />
-        <div className="fixed top-0 left-0 w-full h-[140px] bg-[#0b1220]/80 backdrop-blur-xl z-30" />
-        <Navbar variant="project" />
-        <ScrollProgressBar progress={progress} mode="fixed" />
-
-        <div className="fixed inset-0 z-0 pointer-events-none">
-          <NeuralScene scrollProgress={progress} mousePosition={mousePosition} />
-        </div>
-
-        <div className="relative z-10 w-full pt-[140px]">
-          <main className="flex flex-col max-w-5xl mx-auto px-6 md:px-10 lg:px-12 pb-24 gap-10">
-            <motion.section
-              className="flex flex-col gap-4"
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
-            >
-              <h1 className="text-4xl md:text-5xl font-semibold text-white">
-                Project Not Found
-              </h1>
-              <p className="text-white/70 text-base">
-                The project you are looking for does not exist. Try going back to the projects list.
-              </p>
-              <button
-                type="button"
-                onClick={() => navigate("/projects")}
-                className="inline-flex items-center gap-2 text-sm font-mono text-white/70 hover:text-white transition-colors w-fit"
-              >
-                <span className="text-lg">←</span>
-                <span>Back to Projects</span>
-              </button>
-            </motion.section>
-          </main>
-        </div>
-      </div>
+      <ProjectPageShell
+        progress={progress}
+        mainClassName="max-w-5xl mx-auto px-6 md:px-10 lg:px-12 pb-24 gap-10"
+      >
+        <motion.section
+          className="flex flex-col gap-4"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+        >
+          <h1 className="text-4xl md:text-5xl font-semibold text-white">
+            Project Not Found
+          </h1>
+          <p className="text-white/70 text-base">
+            The project you are looking for does not exist. Try going back to the projects list.
+          </p>
+          <button
+            type="button"
+            onClick={() => navigate("/projects")}
+            className="inline-flex items-center gap-2 text-sm font-mono text-white/70 hover:text-white transition-colors w-fit"
+          >
+            <span className="text-lg">←</span>
+            <span>Back to Projects</span>
+          </button>
+        </motion.section>
+      </ProjectPageShell>
     );
   }
 
@@ -62,95 +293,13 @@ const ProjectDetailPage = () => {
   const primaryCta = isUiUx ? "View Case Study" : "Explore Project";
 
   if (project.slug === "ayashield") {
-    const solutionPillars = [
-      {
-        title: "Transparency",
-        description: "Every score exposes its exact formula and weights.",
-      },
-      {
-        title: "Explainability",
-        description: "AI explains why risk exists, not just what it is.",
-      },
-      {
-        title: "Simulation",
-        description: "Model outcomes before committing capital.",
-      },
-      {
-        title: "Accessibility",
-        description: "Risk intelligence for everyone, not just quants.",
-      },
-    ];
-
-    const keyFeatures = [
-      {
-        title: "Risk Intelligence Engine",
-        description: "Bloomberg-grade risk terminal with transparent scoring and confidence meters.",
-      },
-      {
-        title: "Scenario Simulation",
-        description: "Bull, neutral, bear, and crash multipliers for position outcomes.",
-      },
-      {
-        title: "Liquidity Modeling",
-        description: "Exit impact at $10k–$500k tiers with slippage projections.",
-      },
-      {
-        title: "AI Copilot",
-        description: "Structured explanations for risk drivers and mitigation steps.",
-      },
-      {
-        title: "Voice Assistant",
-        description: "Hands-free risk analysis with speech input/output.",
-      },
-      {
-        title: "Security Dashboard",
-        description: "Exploit tracking, attack type analytics, and incident insights.",
-      },
-    ];
-
-    const techStack = [
-      "React",
-      "TypeScript",
-      "Tailwind",
-      "Zustand",
-      "Express",
-      "AI Layer",
-      "Recharts",
-      "Framer Motion",
-    ];
-
-    const howItWorks = [
-      {
-        title: "Weighted Risk Score",
-        description:
-          "Volatility, liquidity, contract, behavioral, and scam signals blend into a transparent weighted score.",
-      },
-      {
-        title: "Scenario Multipliers",
-        description:
-          "Market conditions adjust the base score to reveal worst-case and best-case outcomes.",
-      },
-      {
-        title: "Liquidity Impact",
-        description:
-          "Exit simulations model slippage at multiple capital tiers to reveal hidden risk.",
-      },
-    ];
+    const { solutionPillars, keyFeatures, techStack, howItWorks } = AYASHIELD_CONTENT;
 
     return (
-      <div className="flex flex-col w-full">
-        <CustomCursor mousePosition={mousePosition} />
-        <GlowCursorTrail />
-        <div className="fixed top-0 left-0 w-full h-[140px] bg-[#0b1220]/80 backdrop-blur-xl z-30" />
-        <Navbar variant="project" />
-        <ScrollProgressBar progress={progress} mode="fixed" />
-
-        <div className="fixed inset-0 z-0 pointer-events-none">
-          <NeuralScene scrollProgress={progress} mousePosition={mousePosition} />
-        </div>
-
-        <div className="relative z-10 w-full pt-[140px]">
-          <main className="flex flex-col max-w-6xl mx-auto px-6 md:px-10 lg:px-12 pb-24 gap-16">
+      <ProjectPageShell
+        progress={progress}
+        mainClassName="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 pb-24 gap-16"
+      >
             {/* Hero */}
             <motion.section
               className="flex flex-col gap-6"
@@ -405,199 +554,25 @@ const ProjectDetailPage = () => {
                 </a>
               </div>
             </motion.section>
-          </main>
-        </div>
-      </div>
+      </ProjectPageShell>
     );
   }
 
   if (project.slug === "burger-king-redesign") {
-    const overviewCards = [
-      {
-        title: "Goal",
-        description:
-          "Improve UX, navigation, and interface clarity for faster, simpler ordering.",
-      },
-      {
-        title: "Problems",
-        description:
-          "Cluttered menus, confusing flows, weak CTAs, and limited personalization.",
-      },
-      {
-        title: "Outcome",
-        description:
-          "A clean, intuitive experience with smarter discovery and ordering.",
-      },
-    ];
-
-    const keyAdditions = [
-      "Personalized home screen",
-      "Hamburger menu navigation",
-      "Crazy Deals section",
-      "Improved store locator",
-    ];
-
-    const userStruggles = [
-      "Cluttered UI that overwhelms new users",
-      "Confusing navigation and inconsistent hierarchy",
-      "Weak search and filtering for quick decisions",
-      "Low-visibility CTAs during ordering",
-      "Lack of personalization for returning users",
-      "Order tracking that feels buried and unclear",
-    ];
-
-    const researchBlocks = [
-      {
-        title: "Primary Research",
-        label: "Google Forms survey",
-        description:
-          "Focused on Gen Z users to validate core UX pain points and ordering behavior.",
-      },
-      {
-        title: "Secondary Research",
-        label: "App Store, Play Store, Reddit",
-        description:
-          "Real user reviews revealed consistent frustrations with navigation, speed, and clarity.",
-      },
-    ];
-
-    const personas = [
-      {
-        name: "Budget Benny",
-        role: "Deal-focused student",
-        goals: ["Find the best deals fast", "Compare bundles easily"],
-        painPoints: ["Deals feel hidden", "Too many taps to checkout"],
-      },
-      {
-        name: "Late Nate",
-        role: "Impatient late-night user",
-        goals: ["Reorder quickly", "Track delivery in one place"],
-        painPoints: ["Navigation slows him down", "Tracking lacks clarity"],
-      },
-      {
-        name: "Fit Krit",
-        role: "Health-conscious user",
-        goals: ["Find lighter options", "Customize ingredients"],
-        painPoints: ["Filters are weak", "Customization feels buried"],
-      },
-    ];
-
-    const journeyStages = [
-      {
-        stage: "Discover",
-        detail: "Users hunt for deals and decide what to order.",
-        pain: "Navigation hides the best offers.",
-      },
-      {
-        stage: "Customize",
-        detail: "Users adjust items and add sides.",
-        pain: "Customization feels dense and unclear.",
-      },
-      {
-        stage: "Pay",
-        detail: "Users complete checkout quickly.",
-        pain: "Too many steps before confirmation.",
-      },
-      {
-        stage: "Track",
-        detail: "Users check order status and ETA.",
-        pain: "Tracking is buried in the UI.",
-      },
-    ];
-
-    const insights = [
-      "Confusing layout",
-      "Unorganized menu",
-      "Cluttered UI",
-      "Lack of personalization",
-      "Weak CTAs",
-      "Poor search",
-      "Order tracking issues",
-    ];
-
-    const designSolutions = [
-      "Cleaner layout with stronger visual hierarchy",
-      "Simplified navigation with a hamburger menu",
-      "Reduced steps from discovery to checkout",
-      "Improved visibility for offers and CTAs",
-      "Personalized experiences on the home screen",
-    ];
-
-    const designScreens = [
-      {
-        title: "Landing Page",
-        description: "A black-and-white palette sets a premium, focused tone.",
-        image: "/uiux/onboarding.png",
-        alt: "Burger King onboarding screen",
-      },
-      {
-        title: "Login / Signup",
-        description: "A welcoming entry with clear value and action.",
-        image: "/uiux/login%20page.png",
-        alt: "Burger King login screen",
-      },
-      {
-        title: "Home Page",
-        description: "Greeting, search, and deals are surfaced instantly.",
-        image: "/uiux/home.png",
-        alt: "Burger King home screen",
-      },
-      {
-        title: "Crown Rewards",
-        description: "Centralized rewards with a bold crown hero.",
-        image: "/uiux/Crown%20Rewards.png",
-        alt: "Burger King crown rewards screen",
-      },
-      {
-        title: "Store Locator",
-        description: "Clean cards improve scanability and clarity.",
-        image: "/uiux/finding%20nearby%20stores.png",
-        alt: "Burger King store locator screen",
-      },
-      {
-        title: "Crazy Deals",
-        description: "A dedicated deals hub for high-intent users.",
-        image: "/uiux/Crazy%20app%20deals.png",
-        alt: "Burger King crazy deals screen",
-      },
-      {
-        title: "Customize Order",
-        description: "A focused customization flow with fewer steps.",
-        image: "/uiux/Customise%20Order-1.png",
-        alt: "Burger King order customization screen",
-      },
-      {
-        title: "Menu",
-        description: "Reduced clutter with organized categories.",
-        image: "/uiux/menu.png",
-        alt: "Burger King menu screen",
-      },
-      {
-        title: "Category Pages",
-        description: "Focused browsing with stronger visual grouping.",
-        image: "/uiux/burgers.png",
-        alt: "Burger King category listing screen",
-      },
-    ];
-
-    const wireframeNotes = [
-      "Full user flow mapped from discovery to tracking.",
-      "Iteration cycles focused on speed and clarity.",
-      "Layout tests validated hierarchy before UI polish.",
-    ];
-
-    const impactPoints = [
-      "Reduced cognitive load during browsing",
-      "Faster ordering with fewer decision steps",
-      "Cleaner UX for first-time and returning users",
-      "Better engagement through personalized content",
-    ];
-
-    const learningPoints = [
-      "UX is built on user behavior, not just visuals.",
-      "Balance creativity with usability and speed.",
-      "Small changes create measurable impact at scale.",
-    ];
+    const {
+      overviewCards,
+      keyAdditions,
+      userStruggles,
+      researchBlocks,
+      personas,
+      journeyStages,
+      insights,
+      designSolutions,
+      designScreens,
+      wireframeNotes,
+      impactPoints,
+      learningPoints,
+    } = BURGER_KING_CASE_STUDY;
 
     const prototypeUrl = project.links?.demo;
     const prototypeEmbedUrl = prototypeUrl
@@ -605,19 +580,10 @@ const ProjectDetailPage = () => {
       : "about:blank";
 
     return (
-      <div className="flex flex-col w-full">
-        <CustomCursor mousePosition={mousePosition} />
-        <GlowCursorTrail />
-        <div className="fixed top-0 left-0 w-full h-[140px] bg-[#0b1220]/80 backdrop-blur-xl z-30" />
-        <Navbar variant="project" />
-        <ScrollProgressBar progress={progress} mode="fixed" />
-
-        <div className="fixed inset-0 z-0 pointer-events-none">
-          <NeuralScene scrollProgress={progress} mousePosition={mousePosition} />
-        </div>
-
-        <div className="relative z-10 w-full pt-[140px]">
-          <main className="flex flex-col max-w-6xl mx-auto px-6 md:px-10 lg:px-12 pb-24 gap-16">
+      <ProjectPageShell
+        progress={progress}
+        mainClassName="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 pb-24 gap-16"
+      >
             <motion.section
               className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center"
               initial={{ opacity: 0, y: 24 }}
@@ -1131,26 +1097,15 @@ const ProjectDetailPage = () => {
                 </a>
               </div>
             </motion.section>
-          </main>
-        </div>
-      </div>
+      </ProjectPageShell>
     );
   }
 
   return (
-    <div className="flex flex-col w-full">
-      <CustomCursor mousePosition={mousePosition} />
-      <GlowCursorTrail />
-      <div className="fixed top-0 left-0 w-full h-[140px] bg-[#0b1220]/80 backdrop-blur-xl z-30" />
-      <Navbar variant="project" />
-      <ScrollProgressBar progress={progress} mode="fixed" />
-
-      <div className="fixed inset-0 z-0 pointer-events-none">
-        <NeuralScene scrollProgress={progress} mousePosition={mousePosition} />
-      </div>
-
-      <div className="relative z-10 w-full pt-[140px]">
-        <main className="flex flex-col max-w-5xl mx-auto px-6 md:px-10 lg:px-12 pb-24 gap-12">
+    <ProjectPageShell
+      progress={progress}
+      mainClassName="max-w-5xl mx-auto px-6 md:px-10 lg:px-12 pb-24 gap-12"
+    >
           <motion.section
             className="flex flex-col gap-4"
             initial={{ opacity: 0, y: 24 }}
@@ -1252,9 +1207,7 @@ const ProjectDetailPage = () => {
               </div>
             </div>
           </motion.section>
-        </main>
-      </div>
-    </div>
+    </ProjectPageShell>
   );
 };
 

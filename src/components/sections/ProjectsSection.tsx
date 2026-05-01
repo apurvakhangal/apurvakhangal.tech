@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { useRef, useState, useLayoutEffect, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import gsap from "gsap";
@@ -9,18 +6,13 @@ import { projects, type Project } from "@/data/projects";
 
 gsap.registerPlugin(ScrollTrigger);
 
-interface ProjectsSectionProps {
-  progress?: number;
-}
-
-export function ProjectsSection({ progress = 0 }: ProjectsSectionProps) {
+export function ProjectsSection() {
   const navigate = useNavigate();
   const sectionRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const isMobileRef = useRef(false);
   const contextRef = useRef<gsap.Context | null>(null);
   const initializationRef = useRef(false);
-  const scrollDistanceRef = useRef(0);
   const [isMobile, setIsMobile] = useState(false);
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
@@ -43,9 +35,6 @@ export function ProjectsSection({ progress = 0 }: ProjectsSectionProps) {
         const trackWidth = track.scrollWidth;
         const viewportWidth = window.innerWidth;
         const scrollDistance = Math.max(0, trackWidth - viewportWidth);
-
-        // Store scroll distance for height calculation
-        scrollDistanceRef.current = scrollDistance;
 
         // STABLE FIX: Set a capped, reasonable section height
         // - Allows animation to complete without overlap
@@ -107,7 +96,7 @@ export function ProjectsSection({ progress = 0 }: ProjectsSectionProps) {
   }, []);
 
   // ProjectCard component - CLEAN VERSION - no animations except hover
-  const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
+  const ProjectCard = ({ project }: { project: Project }) => {
     return (
       <div
         onMouseEnter={() => setHoveredId(project.id)}
@@ -302,9 +291,9 @@ export function ProjectsSection({ progress = 0 }: ProjectsSectionProps) {
               paddingRight: 'max(10vw, 120px)',
             }}
           >
-            {projects.map((project, idx) => (
+            {projects.map((project) => (
               <div key={project.id} className="w-[420px] h-[435px] flex-shrink-0">
-                <ProjectCard project={project} index={idx} />
+                <ProjectCard project={project} />
               </div>
             ))}
             

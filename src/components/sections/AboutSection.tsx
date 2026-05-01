@@ -1,11 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
-interface AboutSectionProps {
-  progress: number;
-}
-
-export function AboutSection({ progress }: AboutSectionProps) {
+export function AboutSection() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: sectionRef });
 

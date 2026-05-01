@@ -1,16 +1,16 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Loader } from "@/components/Loader";
 import { ScrollToTop } from "@/components/ScrollToTop";
-import Index from "./pages/Index.tsx";
-import ProjectsPage from "./pages/ProjectsPage.tsx";
-import ProjectDetailPage from "./pages/ProjectDetailPage.tsx";
-import NotFound from "./pages/NotFound.tsx";
+const Index = lazy(() => import("./pages/Index"));
+const ProjectsPage = lazy(() => import("./pages/ProjectsPage"));
+const ProjectDetailPage = lazy(() => import("./pages/ProjectDetailPage"));
+const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
 
@@ -49,7 +49,7 @@ const AppContent = () => {
       {loading && location.pathname === "/" ? (
         <Loader key="loader" onLoadingComplete={handleLoadingComplete} />
       ) : (
-        <>
+        <Suspense fallback={null}>
           <ScrollToTop />
           <Routes>
             <Route path="/" element={<Index />} />
@@ -58,7 +58,7 @@ const AppContent = () => {
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
-        </>
+        </Suspense>
       )}
     </AnimatePresence>
   );

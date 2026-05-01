@@ -1,9 +1,16 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useState, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 type NavbarPosition = 'fixed' | 'sticky';
 type NavbarVariant = 'default' | 'project';
+
+const NAV_ITEMS = [
+  { label: 'About me', id: 'about' },
+  { label: 'Projects', id: 'projects' },
+  { label: 'Skills', id: 'skills' },
+  { label: 'Contact', id: 'contact' },
+];
 
 export function Navbar({
   position = 'fixed',
@@ -64,12 +71,7 @@ export function Navbar({
     return () => window.removeEventListener('scroll', handleScroll);
   }, [location.pathname]);
 
-  const navItems = [
-    { label: 'About me', id: 'about' },
-    { label: 'Projects', id: 'projects' },
-    { label: 'Skills', id: 'skills' },
-    { label: 'Contact', id: 'contact' },
-  ];
+  const navItems = NAV_ITEMS;
 
   const getNavLinkClass = (id: string) => {
     const isActive = activeSection === id;
@@ -80,13 +82,13 @@ export function Navbar({
     }`;
   };
 
-  const handleResumeClick = () => {
+  const handleResumeClick = useCallback(() => {
     window.open('/ApurvaK-Resume.pdf', '_blank');
-  };
+  }, []);
 
-  const handleLogoClick = () => {
+  const handleLogoClick = useCallback(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  }, []);
 
   const positionClass = position === 'sticky' ? 'sticky top-0' : 'fixed top-6';
   const useProjectLayout = isProject || variant === 'project';
@@ -97,9 +99,6 @@ export function Navbar({
   const shellClass = useProjectLayout
     ? 'flex items-center justify-between px-6 h-[64px] pointer-events-auto'
     : 'relative w-full h-[64px] bg-[#111625]/90 backdrop-blur-xl border border-white/10 rounded-2xl flex items-center justify-between px-5 md:px-8 pointer-events-auto';
-
-  console.log('PATH:', location.pathname);
-  console.log('isProject:', useProjectLayout);
 
   return (
     <motion.nav className={navClass}>

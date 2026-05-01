@@ -1,20 +1,26 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export function useScrollProgress() {
   const [progress, setProgress] = useState(0);
+  const frameRef = useRef<number | null>(null);
+  const lastProgressRef = useRef(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      // Calculate how far the user has scrolled down natively
-      const scrollTop = window.scrollY;
-      // Calculate the maximum possible scroll amount
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      
-      if (maxScroll > 0) {
-        setProgress(scrollTop / maxScroll);
-      } else {
-        setProgress(0);
-      }
+      if (frameRef.current !== null) return;
+
+      frameRef.current = window.requestAnimationFrame(() => {
+        frameRef.current = null;
+
+        const scrollTop = window.scrollY;
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const nextProgress = maxScroll > 0 ? scrollTop / maxScroll : 0;
+
+        if (nextProgress !== lastProgressRef.current) {
+          lastProgressRef.current = nextProgress;
+          setProgress(nextProgress);
+        }
+      });
     };
 
     // Attach native scroll listener
@@ -25,6 +31,9 @@ export function useScrollProgress() {
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      if (frameRef.current !== null) {
+        cancelAnimationFrame(frameRef.current);
+      }
     };
   }, []);
 
