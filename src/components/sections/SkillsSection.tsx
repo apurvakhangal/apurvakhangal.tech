@@ -4,14 +4,23 @@ export function SkillsSection() {
   const mainSkillSections = [
     {
       title: "FRONTEND & DESIGN",
+      color: "text-blue-400",
+      border: "border-blue-400/40",
+      pill: "hover:border-blue-400/50 hover:text-blue-200 hover:bg-blue-500/10",
       skills: ["React", "TypeScript", "JavaScript", "Tailwind CSS", "Framer Motion", "Vite", "Recharts", "Figma", "Adobe XD", "Illustrator", "Photoshop", "Canva", "Design Systems", "User Experience Design"]
     },
     {
       title: "BACKEND & DATABASES",
+      color: "text-emerald-400",
+      border: "border-emerald-400/40",
+      pill: "hover:border-emerald-400/50 hover:text-emerald-200 hover:bg-emerald-500/10",
       skills: ["Python", "Java", "C++", "Node.js", "Express.js", "REST APIs", "MySQL", "MongoDB", "Oracle", "SQLite", "Database Design", "Supabase"]
     },
     {
       title: "AI / MACHINE LEARNING & DATA",
+      color: "text-purple-400",
+      border: "border-purple-400/40",
+      pill: "hover:border-purple-400/50 hover:text-purple-200 hover:bg-purple-500/10",
       skills: ["Machine Learning", "Deep Learning", "Neural Networks", "TensorFlow / Keras", "Scikit-learn", "Pandas", "NumPy", "Matplotlib", "Data Analysis"]
     }
   ];
@@ -99,8 +108,7 @@ export function SkillsSection() {
               whileInView="visible"
               viewport={{ once: false, amount: 0.4 }}
             >
-              {/* Section Title */}
-              <h3 className="uppercase tracking-widest text-white/80 text-xs font-medium pb-4 border-b border-white/20">
+              <h3 className={`uppercase tracking-widest text-xs font-medium pb-4 border-b ${section.border} ${section.color}`}>
                 {section.title}
               </h3>
 
@@ -118,13 +126,9 @@ export function SkillsSection() {
                     variants={itemVariants}
                     initial="rest"
                     whileHover="hover"
-                    className="skill-chip rounded-full border border-white/20 bg-white/[0.04] backdrop-blur-sm px-4 py-2 text-sm text-white/70 cursor-pointer font-medium transition-all duration-300"
+                    className={`skill-chip rounded-full border border-white/15 bg-white/[0.04] backdrop-blur-sm px-4 py-2 text-sm text-white/60 cursor-pointer font-medium transition-all duration-200 ${section.pill}`}
                   >
-                    <motion.div
-                      variants={skillChipVariants}
-                      initial="rest"
-                      whileHover="hover"
-                    >
+                    <motion.div variants={skillChipVariants} initial="rest" whileHover="hover">
                       {skill}
                     </motion.div>
                   </motion.span>

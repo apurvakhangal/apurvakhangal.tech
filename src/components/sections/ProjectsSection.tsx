@@ -273,7 +273,7 @@ export function ProjectsSection() {
       {!isMobile && (
         <div className="w-full h-full overflow-hidden relative">
           {/* Section Header */}
-          <div className="absolute top-12 left-0 right-0 z-50 px-8 md:px-12 lg:px-24">
+          <div className="absolute top-[96px] left-0 right-0 z-50 px-8 md:px-12 lg:px-24">
             <h2 className="text-4xl md:text-5xl font-semibold text-white leading-tight">
               // Projects
             </h2>
@@ -289,6 +289,9 @@ export function ProjectsSection() {
               willChange: 'transform',
               paddingLeft: 'max(10vw, 120px)',
               paddingRight: 'max(10vw, 120px)',
+              paddingTop: '96px',
+              paddingBottom: '24px',
+              boxSizing: 'border-box',
             }}
           >
             {projects.map((project) => (

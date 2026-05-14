@@ -45,28 +45,43 @@ export function HeroSection({ progress, showLogo = true }: HeroSectionProps) {
   };
 
   return (
-    <section className="relative px-12 py-8">
+    <section className="relative px-12 py-4">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-[1.4fr_0.6fr] gap-2 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-4 items-center">
         
-{/* LEFT SIDE - Logo & Text Content */}
+        {/* LEFT SIDE - Logo & Text Content */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex flex-col space-y-6 max-w-[640px]"
+          className="flex flex-col space-y-3 max-w-[640px]"
           style={{ translateY: progress * 20 }}
         >
           {/* Logo */}
           {showLogo && <HeroLogo />}
 
+          {/* Status badge */}
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="flex items-center gap-2 w-fit"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
+            </span>
+            <span className="text-xs font-mono text-emerald-400/80 tracking-widest uppercase">Available for opportunities</span>
+          </motion.div>
+
           {/* Heading */}
-          <h1 className="text-4xl md:text-5xl font-semibold text-white leading-tight">
+          <h1 className="text-4xl md:text-6xl font-semibold text-white leading-[1.08] tracking-tight">
             Hello,<br />I'm Apurva Khangal
           </h1>
 
           {/* Animated Role Titles */}
-          <div className="h-8">
+          <div className="h-8 flex items-center gap-1.5">
+            <span className="text-blue-400/50 font-mono text-lg">›</span>
             <motion.div
               key={roleIndex}
               initial={{ opacity: 0, y: 10 }}
@@ -84,11 +99,24 @@ export function HeroSection({ progress, showLogo = true }: HeroSectionProps) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-white/70 leading-relaxed text-base"
+            className="text-white/60 leading-relaxed text-base max-w-md"
           >
-            Hi, I'm Apurva, a developer who enjoys turning ideas into meaningful digital experiences.
-            I work at the intersection of technology and creativity, exploring code, design, and intelligent systems.
+            Developer working at the intersection of technology and creativity — building things that are not just functional, but meaningful.
           </motion.p>
+
+          {/* Social links */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="flex items-center gap-4"
+          >
+            <a href="https://github.com/apurvakhangal" target="_blank" rel="noopener noreferrer"
+              className="text-xs font-mono text-white/40 hover:text-white/80 transition-colors tracking-widest uppercase">GitHub ↗</a>
+            <span className="w-px h-3 bg-white/20" />
+            <a href="https://linkedin.com/in/apurvakhangal" target="_blank" rel="noopener noreferrer"
+              className="text-xs font-mono text-white/40 hover:text-white/80 transition-colors tracking-widest uppercase">LinkedIn ↗</a>
+          </motion.div>
         </motion.div>
 
         {/* RIGHT SIDE - Profile Image */}
@@ -107,7 +135,7 @@ export function HeroSection({ progress, showLogo = true }: HeroSectionProps) {
             translateY: progress * 20,
             perspective: '1000px',
           }}
-          className="flex justify-end items-center"
+          className="flex justify-center items-center"
         >
           <motion.div
             animate={{

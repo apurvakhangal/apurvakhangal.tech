@@ -73,7 +73,7 @@ export function AboutSection() {
               initial="hidden"
               whileInView="visible"
               viewport={{ once: false, amount: 0.3 }}
-              className="text-white/80 text-lg leading-relaxed transition-all duration-300 hover:text-white hover:text-blue-300"
+              className="text-white/70 text-lg leading-relaxed"
             >
               {paragraph}
             </motion.p>

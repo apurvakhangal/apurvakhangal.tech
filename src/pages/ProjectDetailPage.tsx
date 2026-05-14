@@ -79,6 +79,52 @@ const AYASHIELD_CONTENT = {
   ],
 };
 
+const EDURA_CONTENT = {
+  problemStats: [
+    { value: "73%", label: "of students struggle with learning consistency" },
+    { value: "6+", label: "disconnected apps used per student workflow" },
+    { value: "40%", label: "drop in engagement without personalisation" },
+  ],
+  solutionPillars: [
+    { title: "AI Guidance", description: "Gemini-powered tutoring and adaptive roadmap generation tailored to your goals." },
+    { title: "Smart Planning", description: "AI-prioritised schedules, deadline tracking, and Classroom sync." },
+    { title: "Immersive Focus", description: "Pomodoro timers with ambient audio and visual environments for deep work." },
+    { title: "Collaborative Learning", description: "Study groups, mentorship matching, and FrameVR-powered virtual spaces." },
+    { title: "AI Revision", description: "Auto-generate quizzes, flashcards, and summaries directly from your notes." },
+    { title: "Accessibility", description: "30+ language support and inclusive learning features for every student." },
+  ],
+  coreFeatures: [
+    { title: "AI Tutor", description: "Plain-language explanations for any concept, powered by Gemini AI." },
+    { title: "Learning Roadmaps", description: "Goal-based adaptive paths that evolve with your progress." },
+    { title: "Study Planner", description: "AI-prioritised task lists and smart schedule management." },
+    { title: "Focus Room", description: "Pomodoro timer with curated ambient audio for deep concentration." },
+    { title: "Study VR", description: "FrameVR-powered virtual study rooms for collaborative sessions." },
+    { title: "Notes Workspace", description: "Rich notes with AI summaries and instant flashcard generation." },
+    { title: "Judge0 IDE", description: "Integrated coding environment for practice and assignments." },
+    { title: "Analytics Dashboard", description: "XP, streaks, progress heatmaps, and mastery tracking." },
+    { title: "Community System", description: "Mentorship, discussion forums, and peer study groups." },
+  ],
+  techStack: ["React", "TypeScript", "Supabase", "Gemini AI", "Tailwind", "Zustand", "TanStack Query", "Framer Motion", "Monaco Editor", "FrameVR", "Express", "Recharts", "shadcn/ui"],
+  howItWorks: [
+    { step: "01", title: "Personalised Learning", description: "AI analyses your goals and builds adaptive roadmaps that adjust as you progress." },
+    { step: "02", title: "Intelligent Planning", description: "Smart scheduling prioritises your deadlines and study time automatically." },
+    { step: "03", title: "Active Revision", description: "Generate quizzes and flashcards from your own notes in one click." },
+    { step: "04", title: "Immersive Focus", description: "Pomodoro sessions with soundscapes and visual cues that improve concentration." },
+    { step: "05", title: "Collaborative Growth", description: "Connect with peers and mentors through VR spaces and community systems." },
+  ],
+  progressFeatures: [
+    { metric: "XP System", description: "Earn experience points for every learning action taken." },
+    { metric: "Daily Streaks", description: "Consistency tracking to build long-term learning habits." },
+    { metric: "Mastery Scores", description: "Per-topic mastery based on quiz and revision performance." },
+    { metric: "AI Insights", description: "Personalised improvement tips generated from your data." },
+  ],
+  immersiveCards: [
+    { title: "Focus Room", description: "A distraction-free environment with Pomodoro timers, ambient soundscapes, and focus-mode UI designed to maximise deep work sessions.", tag: "Productivity", tagColor: "text-indigo-300 bg-indigo-500/10 border-indigo-400/30", gradient: "from-indigo-500/20 to-purple-500/5", border: "border-indigo-400/30" },
+    { title: "Study VR", description: "FrameVR-powered virtual study rooms where students collaborate, attend sessions, and explore immersive educational environments together.", tag: "Immersive", tagColor: "text-violet-300 bg-violet-500/10 border-violet-400/30", gradient: "from-violet-500/20 to-pink-500/5", border: "border-violet-400/30" },
+    { title: "AI Workspace", description: "A unified smart workspace combining the AI tutor, Monaco-powered IDE, notes editor, and flashcard generator in a single cohesive environment.", tag: "AI-Powered", tagColor: "text-blue-300 bg-blue-500/10 border-blue-400/30", gradient: "from-blue-500/20 to-indigo-500/5", border: "border-blue-400/30" },
+  ],
+};
+
 const BURGER_KING_CASE_STUDY = {
   overviewCards: [
     {
@@ -329,20 +375,12 @@ const ProjectDetailPage = () => {
               </div>
 
               <div className="flex flex-wrap gap-3">
-                <a
-                  href="https://ayashield.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/20 border border-blue-400/40 text-blue-200 text-sm font-mono hover:bg-blue-500/30 transition-all"
-                >
+                <a href="https://ayashield.vercel.app/" target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/20 border border-blue-400/40 text-blue-200 text-sm font-mono hover:bg-blue-500/30 transition-all">
                   View Live Project →
                 </a>
-                <a
-                  href="https://github.com/apurvakhangal/AyaShield"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/70 text-sm font-mono hover:text-white transition-all"
-                >
+                <a href="https://github.com/apurvakhangal/AyaShield" target="_blank" rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-white/70 text-sm font-mono hover:text-white transition-all">
                   View GitHub →
                 </a>
               </div>
@@ -356,9 +394,14 @@ const ProjectDetailPage = () => {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <div className="rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur-lg aspect-square w-full max-w-[320px] p-8 md:p-10 flex flex-col items-center justify-center text-center justify-self-center lg:justify-self-start lg:mr-3">
+              <div className="rounded-3xl border border-red-500/30 bg-red-500/5 backdrop-blur-lg w-full max-w-[320px] p-8 md:p-10 flex flex-col items-center justify-center text-center justify-self-center lg:justify-self-start lg:mr-3 shadow-[0_0_40px_rgba(239,68,68,0.15)]" style={{ aspectRatio: '1' }}>
+                <p className="text-white/40 text-xs font-mono uppercase tracking-widest mb-2">⚠ Total Lost</p>
                 <p className="text-6xl md:text-7xl font-semibold text-white">$3.8B</p>
-                <p className="text-white/60 mt-3 text-sm md:text-base">Lost to DeFi exploits in 2025 alone</p>
+                <p className="text-red-300/80 mt-3 text-sm md:text-base">to DeFi exploits in 2025 alone</p>
+                <div className="flex gap-3 mt-5 flex-wrap justify-center">
+                  <span className="text-xs px-3 py-1 rounded-full bg-red-500/10 border border-red-400/20 text-red-300/70 font-mono">127 incidents</span>
+                  <span className="text-xs px-3 py-1 rounded-full bg-red-500/10 border border-red-400/20 text-red-300/70 font-mono">avg $30M/event</span>
+                </div>
               </div>
               <div className="space-y-4">
                 <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">The Problem</p>
@@ -389,15 +432,21 @@ const ProjectDetailPage = () => {
                 </p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                {solutionPillars.map((item) => (
-                  <div
-                    key={item.title}
-                    className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-5"
-                  >
-                    <h3 className="text-white font-semibold mb-2">{item.title}</h3>
-                    <p className="text-white/60 text-sm leading-relaxed">{item.description}</p>
-                  </div>
-                ))}
+                {solutionPillars.map((item, i) => {
+                  const colors = [
+                    { border: "border-cyan-400/30",    bg: "bg-cyan-500/5",    icon: "◈", iconColor: "text-cyan-400"    },
+                    { border: "border-purple-400/30",  bg: "bg-purple-500/5",  icon: "✦", iconColor: "text-purple-400"  },
+                    { border: "border-blue-400/30",    bg: "bg-blue-500/5",    icon: "⟳", iconColor: "text-blue-400"    },
+                    { border: "border-emerald-400/30", bg: "bg-emerald-500/5", icon: "◎", iconColor: "text-emerald-400" },
+                  ][i];
+                  return (
+                    <div key={item.title} className={`rounded-2xl border ${colors.border} ${colors.bg} backdrop-blur-lg p-5`}>
+                      <span className={`text-xl mb-3 block ${colors.iconColor}`}>{colors.icon}</span>
+                      <h3 className="text-white font-semibold mb-2">{item.title}</h3>
+                      <p className="text-white/60 text-sm leading-relaxed">{item.description}</p>
+                    </div>
+                  );
+                })}
               </div>
 
             </motion.section>
@@ -461,11 +510,9 @@ const ProjectDetailPage = () => {
                 <h2 className="text-3xl md:text-4xl font-semibold text-white">Risk Intelligence, Explained</h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {howItWorks.map((step) => (
-                  <div
-                    key={step.title}
-                    className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-5"
-                  >
+                {howItWorks.map((step, i) => (
+                  <div key={step.title} className="rounded-2xl border border-blue-400/15 bg-blue-500/5 backdrop-blur-lg p-5">
+                    <p className="text-xs font-mono text-blue-400/60 mb-3 tracking-[0.2em]">{String(i + 1).padStart(2, "0")}</p>
                     <h3 className="text-white font-semibold mb-2">{step.title}</h3>
                     <p className="text-white/60 text-sm leading-relaxed">{step.description}</p>
                   </div>
@@ -489,15 +536,16 @@ const ProjectDetailPage = () => {
                 </p>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {keyFeatures.map((feature) => (
-                  <div
-                    key={feature.title}
-                    className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-5"
-                  >
-                    <h3 className="text-white font-semibold mb-2">{feature.title}</h3>
-                    <p className="text-white/60 text-sm leading-relaxed">{feature.description}</p>
-                  </div>
-                ))}
+                {keyFeatures.map((feature, i) => {
+                  const icons = ["⬡", "⟳", "⬇", "✦", "◉", "⬡"];
+                  return (
+                    <div key={feature.title} className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-5 hover:border-blue-400/30 hover:bg-blue-500/5 transition-all duration-300">
+                      <span className="text-blue-400/70 text-lg mb-3 block font-mono">{icons[i]}</span>
+                      <h3 className="text-white font-semibold mb-2">{feature.title}</h3>
+                      <p className="text-white/60 text-sm leading-relaxed">{feature.description}</p>
+                    </div>
+                  );
+                })}
               </div>
             </motion.section>
 
@@ -525,35 +573,277 @@ const ProjectDetailPage = () => {
 
             {/* Bottom CTA */}
             <motion.section
-              className="flex flex-col items-center gap-4 text-center"
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <h2 className="text-3xl md:text-4xl font-semibold text-white">Ready to explore AyaShield?</h2>
-              <p className="text-white/60 text-sm md:text-base max-w-2xl">
-                Don’t sign blind. Understand risk before you move capital.
-              </p>
-              <div className="flex flex-wrap justify-center gap-3">
-                <a
-                  href="https://ayashield.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-blue-500/20 border border-blue-400/40 text-blue-200 text-sm font-mono hover:bg-blue-500/30 transition-all"
-                >
-                  View Live Project →
-                </a>
-                <a
-                  href="https://github.com/apurvakhangal/AyaShield"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 border border-white/10 text-white/70 text-sm font-mono hover:text-white transition-all"
-                >
-                  View GitHub →
-                </a>
+              <div className="rounded-3xl border border-blue-400/20 bg-gradient-to-br from-blue-500/10 via-white/[0.02] to-cyan-500/10 backdrop-blur-lg p-10 md:p-14 flex flex-col items-center gap-5 text-center shadow-[0_0_60px_rgba(96,165,250,0.12)]">
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-blue-400/60">Don't Sign Blind</p>
+                <h2 className="text-3xl md:text-4xl font-semibold text-white">Ready to explore AyaShield?</h2>
+                <p className="text-white/60 text-sm md:text-base max-w-xl">
+                  Understand risk before you move capital. Institutional-grade intelligence, now accessible to everyone.
+                </p>
+                <div className="flex flex-wrap justify-center gap-3 pt-2">
+                  <a href="https://ayashield.vercel.app/" target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-blue-500/25 border border-blue-400/50 text-blue-200 text-sm font-mono hover:bg-blue-500/35 transition-all">
+                    View Live Project →
+                  </a>
+                  <a href="https://github.com/apurvakhangal/AyaShield" target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-white/5 border border-white/15 text-white/70 text-sm font-mono hover:text-white transition-all">
+                    View GitHub →
+                  </a>
+                </div>
               </div>
             </motion.section>
+      </ProjectPageShell>
+    );
+  }
+
+  if (project.slug === "edura") {
+    const { problemStats, solutionPillars, coreFeatures, techStack: eduraTech, howItWorks, progressFeatures, immersiveCards } = EDURA_CONTENT;
+    return (
+      <ProjectPageShell progress={progress} mainClassName="max-w-6xl mx-auto px-6 md:px-10 lg:px-12 pb-24 gap-20">
+
+        {/* HERO */}
+        <motion.section
+          className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center"
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: "easeOut" }}
+        >
+          <div className="flex flex-col gap-6">
+            <button type="button" onClick={() => navigate("/projects")} className="inline-flex items-center gap-2 text-sm font-mono text-white/60 hover:text-white transition-colors w-fit">
+              <span className="text-lg">←</span><span>Back to Projects</span>
+            </button>
+            <div className="space-y-5">
+              <span className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.15em] px-3 py-1 rounded-full border bg-violet-500/15 text-violet-300 border-violet-400/40 w-fit">AI / Education</span>
+              <h1 className="text-5xl md:text-7xl font-semibold text-white leading-[1.05] tracking-tight">Edura</h1>
+              <p className="text-white/70 text-base md:text-lg max-w-lg leading-relaxed">An AI-powered study and learning companion designed for intelligent, immersive, and personalised education.</p>
+            </div>
+            <div className="flex flex-wrap gap-3">
+              <a href="https://edura-geminihack.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-violet-500/20 border border-violet-400/40 text-violet-200 text-sm font-mono hover:bg-violet-500/30 transition-all">View Live Project →</a>
+              <a href="https://github.com/apurvakhangal/edura" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 text-white/70 text-sm font-mono hover:text-white transition-all">View GitHub →</a>
+            </div>
+          </div>
+
+          {/* Floating Dashboard Mockup */}
+          <motion.div
+            initial={{ opacity: 0, x: 40, filter: "blur(8px)" }}
+            animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+            transition={{ duration: 0.9, delay: 0.3 }}
+            className="hidden lg:flex flex-col gap-3 relative"
+          >
+            <div className="absolute -inset-8 bg-violet-500/10 blur-3xl rounded-full pointer-events-none" />
+            <div className="rounded-2xl border border-white/10 bg-white/[0.05] backdrop-blur-lg p-4 flex items-start gap-3">
+              <div className="w-8 h-8 rounded-full bg-violet-500/30 border border-violet-400/40 flex items-center justify-center flex-shrink-0 text-violet-300 text-xs">✦</div>
+              <div>
+                <p className="text-white text-sm font-medium">AI Tutor</p>
+                <p className="text-white/40 text-xs mt-0.5">Explain dynamic programming simply…</p>
+                <p className="text-violet-300 text-xs mt-2 leading-relaxed">Dynamic programming breaks complex problems into smaller overlapping subproblems, solving each once and storing results…</p>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="rounded-2xl border border-white/10 bg-white/[0.05] backdrop-blur-lg p-4">
+                <p className="text-white/40 text-xs font-mono uppercase tracking-wider mb-1">Streak</p>
+                <p className="text-3xl font-semibold text-white">🔥 12</p>
+                <p className="text-white/30 text-xs mt-1">days in a row</p>
+              </div>
+              <div className="rounded-2xl border border-white/10 bg-white/[0.05] backdrop-blur-lg p-4">
+                <p className="text-white/40 text-xs font-mono uppercase tracking-wider mb-1">XP Earned</p>
+                <p className="text-3xl font-semibold text-violet-300">4,820</p>
+                <p className="text-white/30 text-xs mt-1">+340 today</p>
+              </div>
+            </div>
+            <div className="rounded-2xl border border-white/10 bg-white/[0.05] backdrop-blur-lg p-4">
+              <p className="text-white/40 text-xs font-mono uppercase tracking-wider mb-3">Today's Plan</p>
+              <div className="space-y-2">
+                {[{ label: "Data Structures — Chapter 5", done: true }, { label: "Practice 3 LeetCode problems", done: true }, { label: "Review flashcards: Algorithms", done: false }].map((task) => (
+                  <div key={task.label} className="flex items-center gap-2">
+                    <div className={`w-4 h-4 rounded-full border flex items-center justify-center flex-shrink-0 ${task.done ? "border-violet-400 bg-violet-500/30" : "border-white/20"}`}>{task.done && <span className="text-violet-300 text-[8px]">✓</span>}</div>
+                    <p className={`text-xs ${task.done ? "text-white/30 line-through" : "text-white/70"}`}>{task.label}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="rounded-2xl border border-indigo-400/30 bg-indigo-500/10 backdrop-blur-lg p-4 flex items-center justify-between">
+              <div>
+                <p className="text-white/40 text-xs font-mono uppercase tracking-wider">Focus Room</p>
+                <p className="text-white text-xl font-semibold mt-1">24:00</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-indigo-400 animate-pulse" />
+                <p className="text-indigo-300 text-xs font-mono">Active Session</p>
+              </div>
+            </div>
+          </motion.div>
+        </motion.section>
+
+        {/* PROBLEM */}
+        <motion.section className="space-y-8" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.6, ease: "easeOut" }}>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {problemStats.map((stat) => (
+              <div key={stat.value} className="rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-8 text-center" style={{ boxShadow: "0 0 40px rgba(139,92,246,0.07)" }}>
+                <p className="text-5xl md:text-6xl font-semibold text-white mb-3">{stat.value}</p>
+                <p className="text-white/55 text-sm leading-relaxed">{stat.label}</p>
+              </div>
+            ))}
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div className="space-y-3">
+              <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">The Problem</p>
+              <h2 className="text-3xl md:text-4xl font-semibold text-white leading-snug">The Modern Learning Experience Is Fragmented</h2>
+            </div>
+            <div className="space-y-4 text-white/70 text-sm md:text-base leading-relaxed">
+              <p>Students juggle notes apps, schedulers, flashcard tools, tutorial platforms, and productivity timers — none of which talk to each other. The result is context-switching fatigue and zero personalisation.</p>
+              <p>Without a unified system, accountability breaks down, progress is invisible, and engagement fades. The barrier to effective learning isn't content — it's fragmentation.</p>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* SOLUTION */}
+        <motion.section className="space-y-8" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.6, ease: "easeOut" }}>
+          <div className="space-y-3">
+            <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">The Solution</p>
+            <h2 className="text-2xl md:text-[1.75rem] font-semibold text-white">An Intelligent Learning Ecosystem</h2>
+            <p className="text-white/70 text-sm md:text-base leading-relaxed">Edura unifies AI tutoring, planning, collaboration, revision, analytics, and immersive focus into one cohesive platform — so students never have to leave their learning environment.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            {solutionPillars.map((pillar) => (
+              <div key={pillar.title} className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-5 hover:border-violet-400/40 transition-colors duration-300">
+                <h3 className="text-white font-semibold mb-2">{pillar.title}</h3>
+                <p className="text-white/60 text-sm leading-relaxed">{pillar.description}</p>
+              </div>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* CORE FEATURES */}
+        <motion.section className="space-y-8" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.6, ease: "easeOut" }}>
+          <div className="space-y-3">
+            <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">Core Features</p>
+            <h2 className="text-3xl md:text-4xl font-semibold text-white">Built for the Entire Learning Journey</h2>
+            <p className="text-white/60 text-sm md:text-base">Every feature serves a specific need in a student's day — from morning planning to late-night revision.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {coreFeatures.map((feature) => (
+              <div key={feature.title} className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-5 hover:border-violet-400/30 transition-colors duration-300">
+                <h3 className="text-white font-semibold mb-2">{feature.title}</h3>
+                <p className="text-white/60 text-sm leading-relaxed">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* TECH STACK */}
+        <motion.section className="space-y-6" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.6, ease: "easeOut" }}>
+          <div className="space-y-3">
+            <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">Tech Stack</p>
+            <h2 className="text-3xl md:text-4xl font-semibold text-white">Full-Stack AI Learning Infrastructure</h2>
+          </div>
+          <div className="flex flex-wrap gap-3">
+            {eduraTech.map((tech) => (
+              <span key={tech} className="text-sm px-4 py-2 rounded-full bg-white/10 text-white/80 border border-white/20 font-mono hover:border-violet-400/50 hover:bg-violet-500/10 hover:text-violet-200 transition-all duration-200">{tech}</span>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* HOW IT WORKS */}
+        <motion.section className="space-y-8" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.6, ease: "easeOut" }}>
+          <div className="space-y-3">
+            <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">How It Works</p>
+            <h2 className="text-3xl md:text-4xl font-semibold text-white">How Edura Works</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {howItWorks.slice(0, 3).map((step) => (
+              <div key={step.step} className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-5">
+                <p className="text-xs font-mono text-violet-400/70 mb-3 tracking-[0.2em]">{step.step}</p>
+                <h3 className="text-white font-semibold mb-2">{step.title}</h3>
+                <p className="text-white/60 text-sm leading-relaxed">{step.description}</p>
+              </div>
+            ))}
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 max-w-2xl mx-auto w-full">
+            {howItWorks.slice(3).map((step) => (
+              <div key={step.step} className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-5">
+                <p className="text-xs font-mono text-violet-400/70 mb-3 tracking-[0.2em]">{step.step}</p>
+                <h3 className="text-white font-semibold mb-2">{step.title}</h3>
+                <p className="text-white/60 text-sm leading-relaxed">{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* PROGRESS INTELLIGENCE */}
+        <motion.section className="space-y-8" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.15 }} transition={{ duration: 0.6, ease: "easeOut" }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+            <div className="space-y-3">
+              <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">Progress Intelligence</p>
+              <h2 className="text-3xl md:text-4xl font-semibold text-white">Data-Driven Learning Progress</h2>
+              <p className="text-white/70 text-sm md:text-base leading-relaxed">Edura transforms every study session into measurable progress. Students see exactly how they're improving — and where to focus next.</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {progressFeatures.map((item) => (
+                <div key={item.metric} className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-5" style={{ boxShadow: "0 0 30px rgba(139,92,246,0.06)" }}>
+                  <h3 className="text-white font-semibold mb-2">{item.metric}</h3>
+                  <p className="text-white/60 text-sm leading-relaxed">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </motion.section>
+
+        {/* IMMERSIVE EXPERIENCE */}
+        <motion.section className="space-y-8" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.6, ease: "easeOut" }}>
+          <div className="space-y-3">
+            <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">Immersive Learning</p>
+            <h2 className="text-3xl md:text-4xl font-semibold text-white">Beyond Traditional Study Tools</h2>
+            <p className="text-white/60 text-sm md:text-base">Edura creates environments that make learning feel natural, focused, and collaborative.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {immersiveCards.map((card) => (
+              <div key={card.title} className={`rounded-3xl border ${card.border} bg-gradient-to-br ${card.gradient} backdrop-blur-lg p-6 space-y-4`}>
+                <span className={`text-xs font-mono uppercase tracking-[0.15em] px-3 py-1 rounded-full border w-fit inline-block ${card.tagColor}`}>{card.tag}</span>
+                <h3 className="text-white font-semibold text-lg">{card.title}</h3>
+                <p className="text-white/65 text-sm leading-relaxed">{card.description}</p>
+              </div>
+            ))}
+          </div>
+        </motion.section>
+
+        {/* ARCHITECTURE */}
+        <motion.section className="space-y-6" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.6, ease: "easeOut" }}>
+          <div className="space-y-2">
+            <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">Architecture</p>
+            <h2 className="text-3xl md:text-4xl font-semibold text-white">System Architecture</h2>
+          </div>
+          <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-4 shadow-[0_0_40px_rgba(139,92,246,0.12)]">
+            <img src="/edura-architecture.png" alt="Edura System Architecture" className="w-full rounded-2xl border border-white/10 hover:scale-[1.01] transition-transform duration-300" />
+            <p className="text-white/50 text-sm mt-3 text-center">System Architecture</p>
+          </div>
+        </motion.section>
+
+        {/* LIVE PREVIEW */}
+        <motion.section className="space-y-6" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.6, ease: "easeOut" }}>
+          <div className="space-y-2">
+            <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">Live Preview</p>
+            <h2 className="text-3xl md:text-4xl font-semibold text-white">Experience Edura</h2>
+          </div>
+          <div className="rounded-3xl border border-white/10 overflow-hidden shadow-[0_0_40px_rgba(139,92,246,0.15)]">
+            <iframe title="Edura Live Preview" src="https://edura-geminihack.vercel.app/" className="w-full h-[650px]" loading="lazy" />
+          </div>
+        </motion.section>
+
+        {/* CTA */}
+        <motion.section className="flex flex-col items-center gap-5 text-center" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.6, ease: "easeOut" }}>
+          <h2 className="text-3xl md:text-4xl font-semibold text-white max-w-2xl leading-snug">Education Should Adapt to the Student — Not the Other Way Around.</h2>
+          <p className="text-white/60 text-sm md:text-base max-w-2xl">Edura combines AI, productivity, collaboration, and immersive learning into one intelligent platform.</p>
+          <div className="flex flex-wrap justify-center gap-3">
+            <a href="https://edura-geminihack.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-violet-500/20 border border-violet-400/40 text-violet-200 text-sm font-mono hover:bg-violet-500/30 transition-all">View Live Project →</a>
+            <a href="https://github.com/apurvakhangal/edura" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 text-white/70 text-sm font-mono hover:text-white transition-all">View GitHub →</a>
+          </div>
+        </motion.section>
+
       </ProjectPageShell>
     );
   }
@@ -664,25 +954,23 @@ const ProjectDetailPage = () => {
                 <h2 className="text-3xl md:text-4xl font-semibold text-white">A clearer, faster ordering experience</h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {overviewCards.map((card) => (
-                  <div
-                    key={card.title}
-                    className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-5"
-                  >
-                    <h3 className="text-white font-semibold mb-2">{card.title}</h3>
-                    <p className="text-white/60 text-sm leading-relaxed">{card.description}</p>
-                  </div>
-                ))}
+                {overviewCards.map((card, i) => {
+                  const accent = i === 0 ? "border-orange-400/40 bg-orange-500/5" : i === 1 ? "border-red-400/30 bg-red-500/5" : "border-emerald-400/30 bg-emerald-500/5";
+                  const labelColor = i === 0 ? "text-orange-300" : i === 1 ? "text-red-300" : "text-emerald-300";
+                  return (
+                    <div key={card.title} className={`rounded-2xl border ${accent} backdrop-blur-lg p-5`}>
+                      <p className={`text-xs font-mono uppercase tracking-widest mb-2 ${labelColor}`}>{card.title}</p>
+                      <p className="text-white/70 text-sm leading-relaxed">{card.description}</p>
+                    </div>
+                  );
+                })}
               </div>
               <div className="rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-lg p-6">
                 <p className="text-white/60 text-xs font-mono uppercase tracking-[0.2em] mb-3">Key Additions</p>
                 <div className="flex flex-wrap gap-3">
                   {keyAdditions.map((item) => (
-                    <span
-                      key={item}
-                      className="text-xs px-3 py-1.5 rounded-lg bg-white/10 text-white/80 border border-white/20 font-mono"
-                    >
-                      {item}
+                    <span key={item} className="text-xs px-3 py-1.5 rounded-full bg-orange-500/10 text-orange-200 border border-orange-400/30 font-mono">
+                      + {item}
                     </span>
                   ))}
                 </div>
@@ -702,11 +990,9 @@ const ProjectDetailPage = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {userStruggles.map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-4"
-                  >
-                    <p className="text-white/70 text-sm">{item}</p>
+                  <div key={item} className="rounded-2xl border border-red-400/20 bg-red-500/5 backdrop-blur-lg p-4 flex items-start gap-3">
+                    <span className="text-red-400 text-base mt-0.5 flex-shrink-0">✕</span>
+                    <p className="text-white/75 text-sm leading-relaxed">{item}</p>
                   </div>
                 ))}
               </div>
@@ -751,33 +1037,96 @@ const ProjectDetailPage = () => {
                 <h2 className="text-3xl md:text-4xl font-semibold text-white">Three core user types</h2>
               </div>
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                {personas.map((persona) => (
-                  <div
-                    key={persona.name}
-                    className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-5"
-                  >
-                    <h3 className="text-white font-semibold">{persona.name}</h3>
-                    <p className="text-white/50 text-sm mb-4">{persona.role}</p>
-                    <div className="space-y-3">
-                      <div>
-                        <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40 mb-2">Goals</p>
-                        <ul className="text-white/70 text-sm space-y-1 list-disc list-inside">
-                          {persona.goals.map((goal) => (
-                            <li key={goal}>{goal}</li>
-                          ))}
-                        </ul>
+                {personas.map((persona, i) => {
+                  const avatarBorder = ["border-orange-400/30", "border-blue-400/30", "border-emerald-400/30"][i];
+                  const avatarBg = ["bg-orange-500/10", "bg-blue-500/10", "bg-emerald-500/10"][i];
+                  const avatarSvgs = [
+                    // Benny – student with glasses
+                    <svg key="benny" viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <ellipse cx="40" cy="84" rx="22" ry="12" fill="#ea580c" opacity="0.85"/>
+                      <rect x="35" y="70" width="10" height="10" rx="5" fill="#fde8c8"/>
+                      <circle cx="40" cy="47" r="24" fill="#fde8c8"/>
+                      <path d="M16 41 Q20 18 40 16 Q60 18 64 41 Q58 26 40 24 Q22 26 16 41Z" fill="#7c3a10"/>
+                      <rect x="19" y="43" width="16" height="12" rx="5" stroke="#1f2937" strokeWidth="2.2" fill="rgba(200,220,255,0.2)"/>
+                      <rect x="45" y="43" width="16" height="12" rx="5" stroke="#1f2937" strokeWidth="2.2" fill="rgba(200,220,255,0.2)"/>
+                      <line x1="35" y1="49" x2="45" y2="49" stroke="#1f2937" strokeWidth="2.2"/>
+                      <circle cx="27" cy="49" r="2.8" fill="#1f2937"/>
+                      <circle cx="53" cy="49" r="2.8" fill="#1f2937"/>
+                      <circle cx="28.2" cy="47.8" r="1.1" fill="white"/>
+                      <circle cx="54.2" cy="47.8" r="1.1" fill="white"/>
+                      <path d="M39 58 Q40 60 41 58" stroke="#d4a574" strokeWidth="1.5" fill="none"/>
+                      <path d="M32 64 Q40 71 48 64" stroke="#1f2937" strokeWidth="2" fill="none" strokeLinecap="round"/>
+                      <ellipse cx="25" cy="59" rx="5" ry="3" fill="#fca5a5" opacity="0.5"/>
+                      <ellipse cx="55" cy="59" rx="5" ry="3" fill="#fca5a5" opacity="0.5"/>
+                    </svg>,
+                    // Nate – tired night-owl in hoodie
+                    <svg key="nate" viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M18 90 Q18 74 40 74 Q62 74 62 90Z" fill="#1e3a5f" opacity="0.9"/>
+                      <rect x="35" y="67" width="10" height="10" rx="5" fill="#fde8c8"/>
+                      <circle cx="40" cy="47" r="24" fill="#fde8c8"/>
+                      <path d="M16 43 Q15 20 40 17 Q65 20 64 43 Q60 23 55 26 Q50 16 40 16 Q30 16 25 26 Q20 23 16 43Z" fill="#1f2937"/>
+                      <ellipse cx="30" cy="48" rx="7" ry="5" fill="white" stroke="#1f2937" strokeWidth="1.5"/>
+                      <ellipse cx="30" cy="49.5" rx="6" ry="3" fill="#1f2937"/>
+                      <ellipse cx="50" cy="48" rx="7" ry="5" fill="white" stroke="#1f2937" strokeWidth="1.5"/>
+                      <ellipse cx="50" cy="49.5" rx="6" ry="3" fill="#1f2937"/>
+                      <path d="M23 44.5 Q30 42 37 44.5" stroke="#1f2937" strokeWidth="2" fill="none"/>
+                      <path d="M43 44.5 Q50 42 57 44.5" stroke="#1f2937" strokeWidth="2" fill="none"/>
+                      <ellipse cx="30" cy="53" rx="8" ry="3" fill="#93c5fd" opacity="0.22"/>
+                      <ellipse cx="50" cy="53" rx="8" ry="3" fill="#93c5fd" opacity="0.22"/>
+                      <path d="M39 58 Q40 60 41 58" stroke="#d4a574" strokeWidth="1.5" fill="none"/>
+                      <path d="M33 64 Q40 62 47 64" stroke="#1f2937" strokeWidth="2" fill="none" strokeLinecap="round"/>
+                    </svg>,
+                    // Krit – sporty with ponytail
+                    <svg key="krit" viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <ellipse cx="40" cy="84" rx="22" ry="12" fill="#16a34a" opacity="0.85"/>
+                      <rect x="35" y="70" width="10" height="10" rx="5" fill="#fde8c8"/>
+                      <circle cx="40" cy="47" r="24" fill="#fde8c8"/>
+                      <path d="M16 42 Q18 18 40 16 Q62 18 64 42 Q60 24 40 22 Q20 24 16 42Z" fill="#92400e"/>
+                      <ellipse cx="63" cy="27" rx="8" ry="6" fill="#92400e"/>
+                      <path d="M61 33 Q70 40 66 50" stroke="#92400e" strokeWidth="5" strokeLinecap="round"/>
+                      <path d="M16 40 Q40 33 64 40" stroke="#15803d" strokeWidth="5" strokeLinecap="round"/>
+                      <ellipse cx="30" cy="48" rx="6" ry="6.5" fill="white" stroke="#1f2937" strokeWidth="1.5"/>
+                      <circle cx="31" cy="48" r="3.5" fill="#1f2937"/>
+                      <circle cx="32" cy="46.5" r="1.2" fill="white"/>
+                      <ellipse cx="50" cy="48" rx="6" ry="6.5" fill="white" stroke="#1f2937" strokeWidth="1.5"/>
+                      <circle cx="51" cy="48" r="3.5" fill="#1f2937"/>
+                      <circle cx="52" cy="46.5" r="1.2" fill="white"/>
+                      <path d="M39 57 Q40 59 41 57" stroke="#d4a574" strokeWidth="1.5" fill="none"/>
+                      <path d="M30 63 Q40 72 50 63" stroke="#1f2937" strokeWidth="2.5" fill="none" strokeLinecap="round"/>
+                      <ellipse cx="22" cy="57" rx="6" ry="3.5" fill="#fca5a5" opacity="0.6"/>
+                      <ellipse cx="58" cy="57" rx="6" ry="3.5" fill="#fca5a5" opacity="0.6"/>
+                    </svg>,
+                  ];
+                  return (
+                    <div key={persona.name} className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-5">
+                      <div className={`w-24 h-24 rounded-2xl border ${avatarBorder} ${avatarBg} mx-auto mb-3 flex items-center justify-center overflow-hidden p-1`}>
+                        {avatarSvgs[i]}
                       </div>
-                      <div>
-                        <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40 mb-2">Pain Points</p>
-                        <ul className="text-white/70 text-sm space-y-1 list-disc list-inside">
-                          {persona.painPoints.map((pain) => (
-                            <li key={pain}>{pain}</li>
-                          ))}
-                        </ul>
+                      <div className="text-center mb-4">
+                        <h3 className="text-white font-semibold text-sm">{persona.name}</h3>
+                        <p className="text-white/45 text-xs">{persona.role}</p>
+                      </div>
+                      <div className="space-y-3">
+                        <div>
+                          <p className="text-xs font-mono uppercase tracking-[0.2em] text-emerald-400/70 mb-2">Goals</p>
+                          <ul className="text-white/70 text-sm space-y-1">
+                            {persona.goals.map((goal: string) => (
+                              <li key={goal} className="flex items-start gap-2"><span className="text-emerald-400 mt-0.5 flex-shrink-0">›</span>{goal}</li>
+                            ))}
+                          </ul>
+                        </div>
+                        <div>
+                          <p className="text-xs font-mono uppercase tracking-[0.2em] text-red-400/70 mb-2">Pain Points</p>
+                          <ul className="text-white/70 text-sm space-y-1">
+                            {persona.painPoints.map((pain: string) => (
+                              <li key={pain} className="flex items-start gap-2"><span className="text-red-400 mt-0.5 flex-shrink-0">›</span>{pain}</li>
+                            ))}
+                          </ul>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </motion.section>
 
@@ -793,14 +1142,17 @@ const ProjectDetailPage = () => {
                 <h2 className="text-3xl md:text-4xl font-semibold text-white">Journey pain points across the flow</h2>
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {journeyStages.map((stage) => (
-                  <div
-                    key={stage.stage}
-                    className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-5"
-                  >
-                    <h3 className="text-white font-semibold mb-2">{stage.stage}</h3>
-                    <p className="text-white/60 text-sm mb-3">{stage.detail}</p>
-                    <p className="text-white/70 text-sm">{stage.pain}</p>
+                {journeyStages.map((stage, i) => (
+                  <div key={stage.stage} className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-5">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="text-xs font-mono text-white/30">{String(i + 1).padStart(2, "0")}</span>
+                      <h3 className="text-white font-semibold">{stage.stage}</h3>
+                    </div>
+                    <p className="text-white/60 text-sm mb-3 leading-relaxed">{stage.detail}</p>
+                    <div className="flex items-start gap-2 rounded-xl bg-orange-500/8 border border-orange-400/20 px-3 py-2">
+                      <span className="text-orange-400 text-xs mt-0.5 flex-shrink-0">!</span>
+                      <p className="text-orange-200/80 text-xs leading-relaxed">{stage.pain}</p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -817,14 +1169,9 @@ const ProjectDetailPage = () => {
                 <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">UX Insights</p>
                 <h2 className="text-3xl md:text-4xl font-semibold text-white">Validated themes from research</h2>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              <div className="flex flex-wrap gap-3">
                 {insights.map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-4"
-                  >
-                    <p className="text-white/70 text-sm">{item}</p>
-                  </div>
+                  <span key={item} className="text-sm px-4 py-2 rounded-full bg-orange-500/10 text-orange-200 border border-orange-400/25 font-mono">{item}</span>
                 ))}
               </div>
             </motion.section>
@@ -836,17 +1183,17 @@ const ProjectDetailPage = () => {
               viewport={{ once: true, amount: 0.2 }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-6">
-                <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40 mb-3">Problem Statement</p>
+              <div className="rounded-2xl border border-red-400/30 bg-red-500/5 backdrop-blur-lg p-6">
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-red-300/70 mb-3">Problem Statement</p>
                 <h3 className="text-white font-semibold mb-2">The current app creates confusion and friction.</h3>
-                <p className="text-white/60 text-sm">
+                <p className="text-white/60 text-sm leading-relaxed">
                   A cluttered interface and inconsistent navigation slow users down and reduce confidence during ordering.
                 </p>
               </div>
-              <div className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-6">
-                <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40 mb-3">Goal</p>
+              <div className="rounded-2xl border border-emerald-400/30 bg-emerald-500/5 backdrop-blur-lg p-6">
+                <p className="text-xs font-mono uppercase tracking-[0.2em] text-emerald-300/70 mb-3">Goal</p>
                 <h3 className="text-white font-semibold mb-2">Deliver a smooth, intuitive experience.</h3>
-                <p className="text-white/60 text-sm">
+                <p className="text-white/60 text-sm leading-relaxed">
                   Make discovery, customization, and tracking feel effortless with clear structure and personalization.
                 </p>
               </div>
@@ -865,11 +1212,9 @@ const ProjectDetailPage = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {designSolutions.map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-2xl border border-white/10 bg-white/[0.04] backdrop-blur-lg p-4"
-                  >
-                    <p className="text-white/70 text-sm">{item}</p>
+                  <div key={item} className="rounded-2xl border border-emerald-400/20 bg-emerald-500/5 backdrop-blur-lg p-4 flex items-start gap-3">
+                    <span className="text-emerald-400 text-base mt-0.5 flex-shrink-0">✓</span>
+                    <p className="text-white/75 text-sm leading-relaxed">{item}</p>
                   </div>
                 ))}
               </div>
