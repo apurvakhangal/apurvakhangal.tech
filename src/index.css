@@ -138,17 +138,10 @@
   animation: particle-spawn 3s ease-out forwards;
 }
 
-/* Ensure smooth 60 FPS */
-* {
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-perspective: 1000;
-  perspective: 1000;
-}
-
-/* GPU acceleration for animations */
-.fixed, [data-hoverable] {
-  will-change: auto;
+/* GPU acceleration — targeted, not global */
+.hero-image-wrapper,
+canvas {
+  will-change: transform;
 }
 
 button:active, a:active {

@@ -5,24 +5,22 @@ interface LoaderProps {
   onLoadingComplete: () => void;
 }
 
+const BOOT_MESSAGES = [
+  'Initializing environment...',
+  'Loading modules...',
+  'Compiling interface...',
+  'Boot sequence ready',
+] as const;
+
+const MESSAGE_DELAY = BOOT_MESSAGES.length * 400 + 500;
+
 export function Loader({ onLoadingComplete }: LoaderProps) {
   const [progress, setProgress] = useState(0);
   const [showProgress, setShowProgress] = useState(false);
 
-  const bootMessages = [
-    'Initializing environment...',
-    'Loading modules...',
-    'Compiling interface...',
-    'Boot sequence ready',
-  ];
-
-  // Start progress counter when all boot messages are shown
+  // Show progress bar after all boot messages have appeared
   useEffect(() => {
-    const messageDelay = bootMessages.length * 400 + 500; // Delay for all messages to appear
-    const timer = setTimeout(() => {
-      setShowProgress(true);
-    }, messageDelay);
-
+    const timer = setTimeout(() => setShowProgress(true), MESSAGE_DELAY);
     return () => clearTimeout(timer);
   }, []);
 
@@ -66,7 +64,7 @@ export function Loader({ onLoadingComplete }: LoaderProps) {
       <div className="relative z-10 flex flex-col items-center justify-center space-y-12 px-4">
         {/* Boot Messages */}
         <div className="space-y-3 text-center">
-          {bootMessages.map((message, index) => (
+          {BOOT_MESSAGES.map((message, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0 }}

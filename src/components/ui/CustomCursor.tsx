@@ -1,89 +1,109 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
-export function CustomCursor({ mousePosition }: { mousePosition: { x: number; y: number } }) {
-  const [rawPos, setRawPos] = useState({ x: -100, y: -100 });
-  const [trailingPos, setTrailingPos] = useState({ x: -100, y: -100 });
-  const [isInteractive, setIsInteractive] = useState(false);
-  const requestRef = useRef<number>();
-  
-  // Use refs to avoid dependency cycle in requestAnimationFrame
-  const currentPos = useRef({ x: -100, y: -100 });
-  const trailPos = useRef({ x: -100, y: -100 });
+/**
+ * CustomCursor — zero-React-state cursor implementation.
+ *
+ * All position updates go directly to the DOM via style.transform.
+ * No useState → no React re-renders on mouse movement.
+ * Uses requestAnimationFrame for smooth lerp on the trailing ring.
+ * Uses translate3d() for GPU-composited positioning.
+ */
+export function CustomCursor() {
+  const ringRef = useRef<HTMLDivElement>(null);
+  const dotRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const ring = ringRef.current;
+    const dot = dotRef.current;
+    if (!ring || !dot) return;
+
+    let animFrameId: number;
+
+    // Current raw cursor position (updated immediately on mousemove)
+    let rawX = -100;
+    let rawY = -100;
+
+    // Trailing ring position (lerped each RAF)
+    let trailX = -100;
+    let trailY = -100;
+
+    // Interactive-element state
+    let interactive = false;
+
     const onMove = (e: MouseEvent) => {
-      // Update actual immediate position
-      setRawPos({ x: e.clientX, y: e.clientY });
-      currentPos.current = { x: e.clientX, y: e.clientY };
-      
-      // If we just entered the screen, snap the trail to the cursor
-      if (trailPos.current.x === -100) {
-        trailPos.current = { x: e.clientX, y: e.clientY };
-        setTrailingPos({ x: e.clientX, y: e.clientY });
+      rawX = e.clientX;
+      rawY = e.clientY;
+
+      // Snap trail on first appearance
+      if (trailX === -100) {
+        trailX = rawX;
+        trailY = rawY;
       }
+
+      // Update dot immediately (no lerp needed for the precise dot)
+      dot.style.transform = `translate3d(${rawX - 4}px, ${rawY - 4}px, 0)`;
     };
 
     const onOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (target.closest('a') || target.closest('button')) {
-        setIsInteractive(true);
-      } else {
-        setIsInteractive(false);
+      const isInteractive = !!(target.closest('a') || target.closest('button'));
+      if (isInteractive !== interactive) {
+        interactive = isInteractive;
+        // Ring scale + fill
+        ring.style.transform = `translate3d(${trailX - 25}px, ${trailY - 25}px, 0) scale(${interactive ? 1.5 : 1})`;
+        ring.style.backgroundColor = interactive ? 'rgba(255,255,255,0.1)' : 'transparent';
+        // Dot visibility
+        dot.style.opacity = interactive ? '0' : '1';
       }
     };
 
-    window.addEventListener('mousemove', onMove);
-    window.addEventListener('mouseover', onOver);
+    const animate = () => {
+      // Lerp trail toward raw cursor
+      trailX += (rawX - trailX) * 0.15;
+      trailY += (rawY - trailY) * 0.15;
 
-    // Smooth trailing animation loop
-    const animateTrail = () => {
-      // Lerp (linear interpolation) formula for smooth following
-      // the lower the factor (0.15), the smoother/slower the follow
-      trailPos.current.x += (currentPos.current.x - trailPos.current.x) * 0.15;
-      trailPos.current.y += (currentPos.current.y - trailPos.current.y) * 0.15;
-      
-      setTrailingPos({ x: trailPos.current.x, y: trailPos.current.y });
-      requestRef.current = requestAnimationFrame(animateTrail);
+      ring.style.transform = `translate3d(${trailX - 25}px, ${trailY - 25}px, 0) scale(${interactive ? 1.5 : 1})`;
+
+      animFrameId = requestAnimationFrame(animate);
     };
-    
-    requestRef.current = requestAnimationFrame(animateTrail);
+
+    window.addEventListener('mousemove', onMove, { passive: true });
+    window.addEventListener('mouseover', onOver, { passive: true });
+    animFrameId = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener('mousemove', onMove);
       window.removeEventListener('mouseover', onOver);
-      if (requestRef.current) cancelAnimationFrame(requestRef.current);
+      cancelAnimationFrame(animFrameId);
     };
   }, []);
 
   return (
     <>
-      {/* Trailing Outer Ring */}
+      {/* Trailing outer ring */}
       <div
-        className="fixed pointer-events-none rounded-full transition-all duration-300 ease-out z-[9998]"
+        ref={ringRef}
+        className="fixed top-0 left-0 pointer-events-none rounded-full z-[9998]"
         style={{
-          left: trailingPos.x,
-          top: trailingPos.y,
-          transform: `translate(-50%, -50%) scale(${isInteractive ? 1.5 : 1})`,
           width: '50px',
           height: '50px',
-          border: '1.5px solid rgba(255, 255, 255, 0.4)',
-          backgroundColor: isInteractive ? 'rgba(255, 255, 255, 0.1)' : 'transparent',
-          boxShadow: '0 0 15px rgba(255, 255, 255, 0.1)',
+          border: '1.5px solid rgba(255,255,255,0.4)',
+          boxShadow: '0 0 15px rgba(255,255,255,0.1)',
+          transition: 'background-color 0.2s, opacity 0.2s',
+          willChange: 'transform',
         }}
       />
-      {/* Immediate small center dot */}
+      {/* Immediate dot */}
       <div
-        className="fixed pointer-events-none rounded-full z-[9999]"
+        ref={dotRef}
+        className="fixed top-0 left-0 pointer-events-none rounded-full z-[9999]"
         style={{
-          left: rawPos.x,
-          top: rawPos.y,
-          transform: 'translate(-50%, -50%)',
           width: '8px',
           height: '8px',
-          backgroundColor: 'rgba(255, 255, 255, 0.9)',
-          boxShadow: '0 0 8px rgba(255, 255, 255, 0.8)',
-          opacity: isInteractive ? 0 : 1,
+          backgroundColor: 'rgba(255,255,255,0.9)',
+          boxShadow: '0 0 8px rgba(255,255,255,0.8)',
           transition: 'opacity 0.2s',
+          willChange: 'transform',
         }}
       />
     </>

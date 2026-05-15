@@ -28,7 +28,7 @@ function NeuralExperience() {
   }, []);
 
   useEffect(() => {
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, [handleMouseMove]);
 
@@ -62,7 +62,7 @@ function NeuralExperience() {
 
     return (
     <div className="flex flex-col w-full">
-      <CustomCursor mousePosition={mousePositionRef.current} />
+      <CustomCursor />
       <GlowCursorTrail />
       <Navbar />
       <ScrollProgressBar progress={progress} />

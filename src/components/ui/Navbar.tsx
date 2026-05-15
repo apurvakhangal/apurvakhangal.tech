@@ -66,7 +66,7 @@ export function Navbar({
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll(); // Call once on mount
     return () => window.removeEventListener('scroll', handleScroll);
   }, [location.pathname]);

@@ -1,6 +1,10 @@
-import { useRef, useMemo, useCallback, useEffect } from 'react';
+import { useRef, useMemo, useCallback } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+
+// Module-level constant — never reallocated during animation
+const ATTRACTION_POINT = new THREE.Vector3(8, 0, 5);
+const ATTRACTION_RADIUS = 12;
 
 interface Props {
   scrollProgress: number;
@@ -59,7 +63,6 @@ export function NeuralUniverse({ scrollProgress, mousePosition }: Props) {
   const parallaxLayersRef = useRef<THREE.Points[]>([]);
   const connectionsRef = useRef<THREE.LineSegments>(null);
   const glowParticlesRef = useRef<THREE.Points>(null);
-  const signalTrailsRef = useRef<THREE.Points>(null);
 
   // Default color values used to be mapped here, now hardcoded.
   const colors = {
@@ -163,41 +166,34 @@ export function NeuralUniverse({ scrollProgress, mousePosition }: Props) {
 
     updateCamera(camera, delta);
 
-    // Central attraction point (where hero image is) - right side, center
-    const attractionPoint = new THREE.Vector3(8, 0, 5);
-    const attractionRadius = 12;
-
-    // Animate main particles - gentle drift with attraction to image
+    // Animate main particles — gentle drift with attraction toward hero image
     if (particlesRef.current) {
       const geo = particlesRef.current.geometry;
       const pos = geo.attributes.position as THREE.BufferAttribute;
-      
+
       for (let i = 0; i < PARTICLE_COUNT; i++) {
         let x = particlePositions[i * 3];
         let y = particlePositions[i * 3 + 1];
         let z = particlePositions[i * 3 + 2];
-        
+
         const drift = seededRandom(i) * 0.5 + 0.3;
-        
-        // Base drift animation
+
         x += Math.sin(t * drift + i) * 0.15;
         y += Math.cos(t * drift * 0.7 + i * 0.5) * 0.15;
         z += Math.sin(t * drift * 0.5 + i * 0.3) * 0.1;
-        
-        // Calculate distance to attraction point (image center)
-        const dx = attractionPoint.x - x;
-        const dy = attractionPoint.y - y;
-        const dz = attractionPoint.z - z;
+
+        const dx = ATTRACTION_POINT.x - x;
+        const dy = ATTRACTION_POINT.y - y;
+        const dz = ATTRACTION_POINT.z - z;
         const distance = Math.sqrt(dx * dx + dy * dy + dz * dz);
-        
-        // If particle is within attraction radius, pull it toward image
-        if (distance < attractionRadius) {
-          const attractionStrength = (1 - distance / attractionRadius) * 0.08;
+
+        if (distance < ATTRACTION_RADIUS) {
+          const attractionStrength = (1 - distance / ATTRACTION_RADIUS) * 0.08;
           x += (dx / distance) * attractionStrength;
           y += (dy / distance) * attractionStrength;
           z += (dz / distance) * attractionStrength;
         }
-        
+
         pos.setXYZ(i, x, y, z);
       }
       pos.needsUpdate = true;

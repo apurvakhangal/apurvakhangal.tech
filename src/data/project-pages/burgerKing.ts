@@ -1,0 +1,102 @@
+export const BURGER_KING_CASE_STUDY = {
+  overviewCards: [
+    { title: "Goal",     description: "Improve UX, navigation, and interface clarity for faster, simpler ordering." },
+    { title: "Problems", description: "Cluttered menus, confusing flows, weak CTAs, and limited personalization." },
+    { title: "Outcome",  description: "A clean, intuitive experience with smarter discovery and ordering." },
+  ],
+  keyAdditions: [
+    "Personalized home screen",
+    "Hamburger menu navigation",
+    "Crazy Deals section",
+    "Improved store locator",
+  ],
+  userStruggles: [
+    "Cluttered UI that overwhelms new users",
+    "Confusing navigation and inconsistent hierarchy",
+    "Weak search and filtering for quick decisions",
+    "Low-visibility CTAs during ordering",
+    "Lack of personalization for returning users",
+    "Order tracking that feels buried and unclear",
+  ],
+  researchBlocks: [
+    {
+      title: "Primary Research",
+      label: "Google Forms survey",
+      description: "Focused on Gen Z users to validate core UX pain points and ordering behavior.",
+    },
+    {
+      title: "Secondary Research",
+      label: "App Store, Play Store, Reddit",
+      description: "Real user reviews revealed consistent frustrations with navigation, speed, and clarity.",
+    },
+  ],
+  personas: [
+    {
+      name: "Budget Benny",
+      role: "Deal-focused student",
+      goals: ["Find the best deals fast", "Compare bundles easily"],
+      painPoints: ["Deals feel hidden", "Too many taps to checkout"],
+    },
+    {
+      name: "Late Nate",
+      role: "Impatient late-night user",
+      goals: ["Reorder quickly", "Track delivery in one place"],
+      painPoints: ["Navigation slows him down", "Tracking lacks clarity"],
+    },
+    {
+      name: "Fit Krit",
+      role: "Health-conscious user",
+      goals: ["Find lighter options", "Customize ingredients"],
+      painPoints: ["Filters are weak", "Customization feels buried"],
+    },
+  ],
+  journeyStages: [
+    { stage: "Discover",  detail: "Users hunt for deals and decide what to order.",  pain: "Navigation hides the best offers." },
+    { stage: "Customize", detail: "Users adjust items and add sides.",                 pain: "Customization feels dense and unclear." },
+    { stage: "Pay",       detail: "Users complete checkout quickly.",                   pain: "Too many steps before confirmation." },
+    { stage: "Track",     detail: "Users check order status and ETA.",                  pain: "Tracking is buried in the UI." },
+  ],
+  insights: [
+    "Confusing layout",
+    "Unorganized menu",
+    "Cluttered UI",
+    "Lack of personalization",
+    "Weak CTAs",
+    "Poor search",
+    "Order tracking issues",
+  ],
+  designSolutions: [
+    "Cleaner layout with stronger visual hierarchy",
+    "Simplified navigation with a hamburger menu",
+    "Reduced steps from discovery to checkout",
+    "Improved visibility for offers and CTAs",
+    "Personalized experiences on the home screen",
+  ],
+  designScreens: [
+    { title: "Landing Page",       description: "A black-and-white palette sets a premium, focused tone.",       image: "/uiux/onboarding.png",              alt: "Burger King onboarding screen" },
+    { title: "Login / Signup",     description: "A welcoming entry with clear value and action.",                image: "/uiux/login%20page.png",            alt: "Burger King login screen" },
+    { title: "Home Page",          description: "Greeting, search, and deals are surfaced instantly.",           image: "/uiux/home.png",                    alt: "Burger King home screen" },
+    { title: "Crown Rewards",      description: "Centralized rewards with a bold crown hero.",                   image: "/uiux/Crown%20Rewards.png",         alt: "Burger King crown rewards screen" },
+    { title: "Store Locator",      description: "Clean cards improve scanability and clarity.",                  image: "/uiux/finding%20nearby%20stores.png", alt: "Burger King store locator screen" },
+    { title: "Crazy Deals",        description: "A dedicated deals hub for high-intent users.",                  image: "/uiux/Crazy%20app%20deals.png",     alt: "Burger King crazy deals screen" },
+    { title: "Customize Order",    description: "A focused customization flow with fewer steps.",                image: "/uiux/Customise%20Order-1.png",     alt: "Burger King order customization screen" },
+    { title: "Menu",               description: "Reduced clutter with organized categories.",                    image: "/uiux/menu.png",                    alt: "Burger King menu screen" },
+    { title: "Category Pages",     description: "Focused browsing with stronger visual grouping.",              image: "/uiux/burgers.png",                  alt: "Burger King category listing screen" },
+  ],
+  wireframeNotes: [
+    "Full user flow mapped from discovery to tracking.",
+    "Iteration cycles focused on speed and clarity.",
+    "Layout tests validated hierarchy before UI polish.",
+  ],
+  impactPoints: [
+    "Reduced cognitive load during browsing",
+    "Faster ordering with fewer decision steps",
+    "Cleaner UX for first-time and returning users",
+    "Better engagement through personalized content",
+  ],
+  learningPoints: [
+    "UX is built on user behavior, not just visuals.",
+    "Balance creativity with usability and speed.",
+    "Small changes create measurable impact at scale.",
+  ],
+} as const;

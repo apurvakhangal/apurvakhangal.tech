@@ -16,7 +16,7 @@ interface ProjectPageShellProps {
 export function ProjectPageShell({ progress, children, mainClassName }: ProjectPageShellProps) {
   return (
     <div className="flex flex-col w-full">
-      <CustomCursor mousePosition={STATIC_MOUSE_POSITION} />
+      <CustomCursor />
       <GlowCursorTrail />
       <div className="fixed top-0 left-0 w-full h-[140px] bg-[#0b1220]/80 backdrop-blur-xl z-30" />
       <Navbar variant="project" />
