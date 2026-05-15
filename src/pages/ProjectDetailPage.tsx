@@ -342,6 +342,7 @@ const ProjectDetailPage = () => {
             <div className="flex flex-wrap gap-3">
               <a href="https://edura-geminihack.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-violet-500/20 border border-violet-400/40 text-violet-200 text-sm font-mono hover:bg-violet-500/30 transition-all">View Live Project →</a>
               <a href="https://github.com/apurvakhangal/edura" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 text-white/70 text-sm font-mono hover:text-white transition-all">View GitHub →</a>
+              <a href="https://www.youtube.com/watch?v=8C2bL4mlK-c" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-red-500/15 border border-red-400/35 text-red-300 text-sm font-mono hover:bg-red-500/25 transition-all">▶ Watch Video</a>
             </div>
           </div>
 
@@ -541,14 +542,22 @@ const ProjectDetailPage = () => {
           </div>
         </motion.section>
 
-        {/* LIVE PREVIEW */}
+        {/* PROTOTYPE VIDEO */}
         <motion.section className="space-y-6" initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.1 }} transition={{ duration: 0.6, ease: "easeOut" }}>
           <div className="space-y-2">
-            <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">Live Preview</p>
+            <p className="text-xs font-mono uppercase tracking-[0.2em] text-white/40">Prototype Walkthrough</p>
             <h2 className="text-3xl md:text-4xl font-semibold text-white">Experience Edura</h2>
+            <p className="text-white/55 text-sm md:text-base">A full walkthrough of the prototype — features, flows, and the AI-powered learning experience.</p>
           </div>
           <div className="rounded-3xl border border-white/10 overflow-hidden shadow-[0_0_40px_rgba(139,92,246,0.15)]">
-            <iframe title="Edura Live Preview" src="https://edura-geminihack.vercel.app/" className="w-full h-[650px]" loading="lazy" />
+            <iframe
+              title="Edura Prototype Walkthrough"
+              src="https://www.youtube.com/embed/8C2bL4mlK-c"
+              className="w-full aspect-video"
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
           </div>
         </motion.section>
 
@@ -559,6 +568,7 @@ const ProjectDetailPage = () => {
           <div className="flex flex-wrap justify-center gap-3">
             <a href="https://edura-geminihack.vercel.app/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-violet-500/20 border border-violet-400/40 text-violet-200 text-sm font-mono hover:bg-violet-500/30 transition-all">View Live Project →</a>
             <a href="https://github.com/apurvakhangal/edura" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 text-white/70 text-sm font-mono hover:text-white transition-all">View GitHub →</a>
+            <a href="https://www.youtube.com/watch?v=8C2bL4mlK-c" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-red-500/15 border border-red-400/35 text-red-300 text-sm font-mono hover:bg-red-500/25 transition-all">▶ Watch Video</a>
           </div>
         </motion.section>
 

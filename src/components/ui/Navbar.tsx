@@ -1,6 +1,6 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useCallback, useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 type NavbarPosition = 'fixed' | 'sticky';
 type NavbarVariant = 'default' | 'project';
@@ -21,6 +21,7 @@ export function Navbar({
 }) {
   const { scrollY } = useScroll();
   const location = useLocation();
+  const navigate = useNavigate();
   const isHome = location.pathname === '/';
   const isProject = location.pathname === '/projects' || location.pathname.includes('projects');
   const [activeSection, setActiveSection] = useState('');
@@ -87,8 +88,15 @@ export function Navbar({
   }, []);
 
   const handleLogoClick = useCallback(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, []);
+    if (isHome) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      navigate('/');
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 100);
+    }
+  }, [isHome, navigate]);
 
   const positionClass = position === 'sticky' ? 'sticky top-0' : 'fixed top-6';
   const useProjectLayout = isProject || variant === 'project';
